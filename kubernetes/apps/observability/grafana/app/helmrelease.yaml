@@ -158,11 +158,17 @@ spec:
       enabled: true
     ingress:
       enabled: true
-      ingressClassName: internal
+      ingressClassName: external
       annotations:
+        external-dns.alpha.kubernetes.io/target: "grafana.${SECRET_DOMAIN}"
         hajimari.io/icon: simple-icons:grafana
       hosts:
-        - &host "grafana.${SECRET_DOMAIN}"
+        - host: &host "grafana.${SECRET_DOMAIN}"
+          paths:
+            - path: /
+              service:
+                name: grafana
+                port: http
       tls:
         - hosts:
             - *host
