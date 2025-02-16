@@ -160,9 +160,20 @@ spec:
       enabled: true
       ingressClassName: external
       annotations:
+        kubernetes.io/ingress.class: "nginx"
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
         hajimari.io/icon: simple-icons:grafana
-      hosts:
-        - &host "grafana.${SECRET_DOMAIN}"
+      rules:
+        - host: &host "grafana.${SECRET_DOMAIN}"
+          http:
+          paths:
+            - path: /
+              pathType: Prefix
+              backend:
+                service:
+                  name: grafana
+                  port:
+                    number: 3000
       tls:
         - hosts:
             - *host
