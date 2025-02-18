@@ -20,15 +20,15 @@ spec:
           image: zadam/trilium:latest
           imagePullPolicy: Always
           ports:
-            - containerPort: 8080
+            - containerPort: 10020
           livenessProbe:
             httpGet:
               path: /
-              port: 8080
+              port: 10020
           readinessProbe:
             httpGet:
               path: /
-              port: 8080
+              port: 10020
           env:
             - name: TRILIUM_DATA_DIR
               value: "/data/trilium"
