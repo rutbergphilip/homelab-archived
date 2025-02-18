@@ -1,0 +1,43 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: notes-app
+  namespace: default
+spec:
+  releaseName: notes-app
+  chart:
+    spec:
+      chart: notes-app
+      sourceRef:
+        kind: HelmRepository
+        name: notes-app
+        namespace: flux-system
+  values:
+    image:
+      repository: ghcr.io/enchant97/note-mark-aio
+      tag: latest
+    service:
+      type: ClusterIP
+      port: 10000
+    ingress:
+      enabled: true
+      hosts:
+        - host: notes.${SECRET_DOMAIN}
+          paths:
+            - /
+    env:
+      - name: JWT_SECRET
+        valueFrom:
+          secretKeyRef:
+            name: secret
+            key: notes-app-secret
+      - name: BIND__HOST
+        value: "0.0.0.0"
+      - name: BIND__PORT
+        value: "8000"
+      - name: DB__TYPE
+        value: "sqlite"
+      - name: DB__URI
+        value: "/data/db.sqlite"
+      - name: TOKEN_EXPIRY
+        value: "259200"
