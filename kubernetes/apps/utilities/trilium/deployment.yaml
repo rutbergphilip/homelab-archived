@@ -27,7 +27,7 @@ spec:
               port: 10020
           env:
             - name: TRILIUM_DATA_DIR
-              value: "/trilium-data:/home/node/trilium-data"
+              value: "/data/trilium"
             - name: USER_UID
               value: "1000"
             - name: USER_GID
@@ -43,7 +43,7 @@ spec:
               cpu: 250m
           volumeMounts:
             - name: trilium-storage
-              mountPath: /trilium-data
+              mountPath: /data
       volumes:
         - name: trilium-storage
           emptyDir: {}
