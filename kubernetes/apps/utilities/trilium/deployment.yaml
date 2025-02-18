@@ -25,13 +25,9 @@ spec:
             httpGet:
               path: /
               port: 10020
-          livenessProbe:
-            httpGet:
-              path: /
-              port: 10020
           env:
             - name: TRILIUM_DATA_DIR
-              value: "/data/trilium"
+              value: "/trilium-data:/home/node/trilium-data"
             - name: USER_UID
               value: "1000"
             - name: USER_GID
@@ -47,7 +43,7 @@ spec:
               cpu: 250m
           volumeMounts:
             - name: trilium-storage
-              mountPath: /data/trilium
+              mountPath: /trilium-data
       volumes:
         - name: trilium-storage
           emptyDir: {}
