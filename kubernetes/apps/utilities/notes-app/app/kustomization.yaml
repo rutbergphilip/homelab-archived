@@ -5,7 +5,7 @@ kind: Kustomization
 namespace: utilities
 
 resources:
-  - secret.sopts.yaml
+  - secret.sops.yaml
   - deployment.yaml
   - service.yaml
   - ingress.yaml
