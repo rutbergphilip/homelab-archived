@@ -28,6 +28,12 @@ spec:
           env:
             - name: TRILIUM_DATA_DIR
               value: "/data/trilium"
+            - name: USER_UID
+              value: "1000"
+            - name: USER_GID
+              value: "1000"
+            - name: TRILIUM_PORT
+              value: "10010"
           resources:
             requests:
               memory: 10Mi
