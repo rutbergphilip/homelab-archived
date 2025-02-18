@@ -4,11 +4,11 @@ metadata:
   namespace: utilities
   name: notes-app
   annotations:
-    external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
+    external-dns.alpha.kubernetes.io/target: "external.rutberg.dev"
 spec:
   ingressClassName: external
   rules:
-    - host: notes.${SECRET_DOMAIN}
+    - host: notes.rutberg.dev
       http:
         paths:
           - path: /
