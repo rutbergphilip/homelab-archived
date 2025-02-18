@@ -20,11 +20,15 @@ spec:
           image: zadam/trilium:latest
           imagePullPolicy: Always
           ports:
-            - containerPort: 10020
+            - containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
           readinessProbe:
             httpGet:
               path: /
-              port: 10020
+              port: 8080
           env:
             - name: TRILIUM_DATA_DIR
               value: "/data/trilium"
@@ -36,14 +40,14 @@ spec:
               value: "10020"
           resources:
             requests:
-              memory: 32Mi
+              memory: 128Mi
               cpu: 10m
             limits:
-              memory: 64Mi
+              memory: 128Mi
               cpu: 250m
           volumeMounts:
-            - name: trilium-storage
+            - name: trilium-data
               mountPath: /data
       volumes:
-        - name: trilium-storage
+        - name: trilium-data
           emptyDir: {}
