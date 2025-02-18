@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: utilities
+  name: trilium
+  labels:
+    app: trilium
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: trilium
+  template:
+    metadata:
+      labels:
+        app: trilium
+    spec:
+      containers:
+        - name: trilium
+          image: zadam/trilium:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 10010
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 10010
+          env:
+            - name: TRILIUM_DATA_DIR
+              value: "/data/trilium"
+          resources:
+            requests:
+              memory: 10Mi
+              cpu: 10m
+            limits:
+              memory: 32Mi
+              cpu: 250m
+          volumeMounts:
+            - name: trilium-storage
+              mountPath: /data/trilium
+      volumes:
+        - name: trilium-storage
+          emptyDir: {}
