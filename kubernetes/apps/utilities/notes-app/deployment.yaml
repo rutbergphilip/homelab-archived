@@ -17,18 +17,14 @@ spec:
     spec:
       containers:
         - name: notes-app
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 10000
-          livenessProbe:
-            httpGet:
-              path: /
-              port: 10000
           image: ghcr.io/enchant97/note-mark-aio:latest # {"$imagepolicy": "utilities:notes-app"}
           imagePullPolicy: Always
           ports:
             - containerPort: 10000
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 10000
           env:
             - name: JWT_SECRET
               valueFrom:

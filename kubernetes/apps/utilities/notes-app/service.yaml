@@ -1,16 +1,15 @@
+---
 apiVersion: v1
 kind: Service
 metadata:
   name: notes-app
   namespace: utilities
-  labels:
-    app: notes-app
 spec:
-  selector:
-    app: notes-app
   type: ClusterIP
   ports:
-    - protocol: TCP
-      name: http
-      port: 10000
+    - port: 10000
+      protocol: TCP
+      name: web-ui
       targetPort: 10000
+  selector:
+    app: notes-app
