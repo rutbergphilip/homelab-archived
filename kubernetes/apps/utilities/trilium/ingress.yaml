@@ -17,4 +17,4 @@ spec:
               service:
                 name: trilium
                 port:
-                  number: 10010
+                  number: 10020
