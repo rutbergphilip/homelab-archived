@@ -39,7 +39,7 @@ spec:
               memory: 10Mi
               cpu: 10m
             limits:
-              memory: 32Mi
+              memory: 64Mi
               cpu: 250m
           volumeMounts:
             - name: trilium-storage
