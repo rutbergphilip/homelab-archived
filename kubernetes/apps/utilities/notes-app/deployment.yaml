@@ -41,7 +41,7 @@ spec:
               value: "/data/db.sqlite"
             - name: TOKEN_EXPIRY
               value: "259200"
-            - name: CORS__ORIGINS
+            - name: CORS_ORIGINS
               value: "https://notes.rutberg.dev"
           resources:
             requests:
