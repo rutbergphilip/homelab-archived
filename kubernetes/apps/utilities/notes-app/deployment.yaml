@@ -2,33 +2,33 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   namespace: utilities
-  name: trilium
+  name: notes-app
   labels:
-    app: trilium
+    app: notes-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: trilium
+      app: notes-app
   template:
     metadata:
       labels:
-        app: trilium
+        app: notes-app
     spec:
       containers:
-        - name: trilium
+        - name: notes-app
           image: zadam/trilium:latest
           imagePullPolicy: Always
           ports:
-            - containerPort: 10020
+            - containerPort: 10000
           livenessProbe:
             httpGet:
               path: /
-              port: 10020
+              port: 10000
           readinessProbe:
             httpGet:
               path: /
-              port: 10020
+              port: 10000
           env:
             - name: TRILIUM_DATA_DIR
               value: "/data/trilium"
@@ -37,7 +37,7 @@ spec:
             - name: USER_GID
               value: "1000"
             - name: TRILIUM_PORT
-              value: "10020"
+              value: "10000"
           resources:
             requests:
               memory: 128Mi

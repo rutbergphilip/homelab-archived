@@ -2,19 +2,19 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   namespace: utilities
-  name: trilium
+  name: notes-app
   annotations:
     external-dns.alpha.kubernetes.io/target: "external.rutberg.dev"
 spec:
   ingressClassName: external
   rules:
-    - host: trilium.rutberg.dev
+    - host: notes-app.rutberg.dev
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: trilium
+                name: notes-app
                 port:
-                  number: 10020
+                  number: 10000
