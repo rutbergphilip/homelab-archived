@@ -22,7 +22,7 @@ spec:
           image: intriin/mmdl:latest
           imagePullPolicy: Always
           ports:
-            - containerPort: 10020
+            - containerPort: 3000
           livenessProbe:
             httpGet:
               path: /
