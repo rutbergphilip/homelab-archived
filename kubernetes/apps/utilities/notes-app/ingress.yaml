@@ -8,13 +8,13 @@ metadata:
 spec:
   ingressClassName: external
   rules:
-    - host: notes-app.rutberg.dev
+    - host: notes.rutberg.dev
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: notes-app
+                name: notes
                 port:
                   number: 10000
