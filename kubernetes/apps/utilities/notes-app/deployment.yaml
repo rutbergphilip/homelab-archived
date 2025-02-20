@@ -50,4 +50,5 @@ spec:
               mountPath: /data
       volumes:
         - name: trilium-data
-          emptyDir: {}
+          persistentVolumeClaim:
+            claimName: trilium-data-pvc
