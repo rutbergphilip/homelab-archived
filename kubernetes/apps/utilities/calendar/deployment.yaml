@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: utilities
+  name: calendar
+  labels:
+    app: calendar
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: calendar
+  template:
+    metadata:
+      labels:
+        app: calendar
+    spec:
+      securityContext:
+        fsGroup: 1000
+      containers:
+        - name: calendar
+          image: intriin/mmdl:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 10020
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 10020
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 10020
+          resources:
+            requests:
+              memory: 128Mi
+              cpu: 10m
+            limits:
+              memory: 128Mi
+              cpu: 250m
+      #     volumeMounts:
+      #       - name: trilium-data
+      #         mountPath: /data
+      # volumes:
+      #   - name: trilium-data
+      #     persistentVolumeClaim:
+      #       claimName: trilium-data-pvc
