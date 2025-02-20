@@ -2,23 +2,23 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   namespace: utilities
-  name: notes-app
+  name: notes
   labels:
-    app: notes-app
+    app: notes
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: notes-app
+      app: notes
   template:
     metadata:
       labels:
-        app: notes-app
+        app: notes
     spec:
       securityContext:
         fsGroup: 1000
       containers:
-        - name: notes-app
+        - name: notes
           image: zadam/trilium:latest
           imagePullPolicy: Always
           ports:

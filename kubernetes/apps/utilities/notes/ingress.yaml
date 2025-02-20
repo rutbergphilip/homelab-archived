@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   namespace: utilities
-  name: notes-app
+  name: notes
   annotations:
     external-dns.alpha.kubernetes.io/target: "external.rutberg.dev"
 spec:
