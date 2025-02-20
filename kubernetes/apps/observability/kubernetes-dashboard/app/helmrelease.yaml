@@ -30,9 +30,8 @@ spec:
       - --disable-settings-authorizer
     ingress:
       enabled: true
-      className: external
+      className: internal
       annotations:
-        external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
         hajimari.io/icon: mdi:kubernetes
       hosts:
         - &host "kubernetes.${SECRET_DOMAIN}"
