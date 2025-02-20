@@ -8,6 +8,6 @@ spec:
   type: ClusterIP
   ports:
     - port: 10020
-      targetPort: 10020
+      targetPort: 3000
   selector:
     app: calendar
