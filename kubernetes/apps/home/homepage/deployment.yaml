@@ -33,10 +33,10 @@ spec:
               port: 3000
           resources:
             requests:
-              memory: 128Mi
+              memory: 512Mi
               cpu: 10m
             limits:
-              memory: 128Mi
+              memory: 512Mi
               cpu: 250m
           volumeMounts:
             - name: homepage-data
