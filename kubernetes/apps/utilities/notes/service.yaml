@@ -8,6 +8,6 @@ spec:
   type: ClusterIP
   ports:
     - port: 10000
-      targetPort: 10000
+      targetPort: 8080
   selector:
     app: notes

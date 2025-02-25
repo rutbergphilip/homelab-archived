@@ -22,15 +22,15 @@ spec:
           image: zadam/trilium:latest
           imagePullPolicy: Always
           ports:
-            - containerPort: 10000
+            - containerPort: 8080
           livenessProbe:
             httpGet:
               path: /
-              port: 10000
+              port: 8080
           readinessProbe:
             httpGet:
               path: /
-              port: 10000
+              port: 8080
           env:
             - name: TRILIUM_DATA_DIR
               value: "/data/trilium"
@@ -39,7 +39,7 @@ spec:
             - name: USER_GID
               value: "1000"
             - name: TRILIUM_PORT
-              value: "10000"
+              value: "8080"
           resources:
             requests:
               memory: 128Mi
