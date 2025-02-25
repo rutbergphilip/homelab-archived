@@ -40,7 +40,7 @@ spec:
               cpu: 250m
           volumeMounts:
             - name: homepage-data
-              mountPath: /data
+              mountPath: /app/config
       volumes:
         - name: homepage-data
           persistentVolumeClaim:
