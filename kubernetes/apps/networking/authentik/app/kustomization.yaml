@@ -1,5 +1,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ./secrets
+  - ./authentik-secret.enc.yaml
+  - ./postgresql-password.enc.yaml
+  - ./helmrepository.yaml
   - ./helmrelease.yaml
