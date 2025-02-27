@@ -1,0 +1,46 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrepository-source-v1beta2.json
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: authentik
+  namespace: flux-system
+spec:
+  interval: 12h
+  url: https://charts.goauthentik.io/
+---
+apiVersion: helm.toolkit.fluxcd.io/v1beta1
+kind: HelmRelease
+metadata:
+  name: authentik
+  namespace: security
+spec:
+  interval: 1h
+  releaseName: authentik
+  chart:
+    spec:
+      chart: authentik
+      sourceRef:
+        kind: HelmRepository
+        name: authentik
+        namespace: flux-system
+  values:
+    authentik:
+      error_reporting:
+        enabled: false
+    server:
+      ingress:
+        ingressClassName: external
+        enabled: true
+        hosts:
+          - &host "auth.${SECRET_DOMAIN}"
+        tls:
+          - hosts:
+              - *host
+    postgresql:
+      enabled: true
+    redis:
+      enabled: true
+    envFrom:
+      - secretRef:
+          name: authentik-secrets
