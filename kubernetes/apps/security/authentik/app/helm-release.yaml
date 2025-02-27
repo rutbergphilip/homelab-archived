@@ -3,7 +3,9 @@ apiVersion: helm.toolkit.fluxcd.io/v1beta1
 kind: HelmRelease
 metadata:
   name: authentik
+  namespace: security
 spec:
+  targetNamespace: security
   interval: 1h
   releaseName: authentik
   chart:
