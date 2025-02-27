@@ -36,10 +36,28 @@ spec:
       enabled: true
     redis:
       enabled: true
-    envFrom:
-      - secretRef:
-          name: authentik-secrets
     global:
+      env:
+        - name: AUTHENTIK_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: authentik-secrets
+              key: AUTHENTIK_SECRET_KEY
+        - name: AUTHENTIK_BOOTSTRAP_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: authentik-secrets
+              key: AUTHENTIK_BOOTSTRAP_TOKEN
+        - name: AUTHENTIK_BOOTSTRAP_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: authentik-secrets
+              key: AUTHENTIK_BOOTSTRAP_PASSWORD
+        - name: POSTGRESQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: authentik-secrets
+              key: POSTGRESQL_PASSWORD
       volumeMounts:
         - mountPath: /data
           name: authentik-data
