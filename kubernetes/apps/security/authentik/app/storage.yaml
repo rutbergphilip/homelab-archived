@@ -2,11 +2,14 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: authentik-data-pvc
+  finalizers:
+    - kubernetes.io/pvc-protection
   namespace: security
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 10Gi
   storageClassName: local-hostpath
+  volumeMode: Filesystem

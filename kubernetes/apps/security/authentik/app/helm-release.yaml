@@ -37,3 +37,11 @@ spec:
     envFrom:
       - secretRef:
           name: authentik-secrets
+    global:
+      volumeMounts:
+        - mountPath: /data
+          name: authentik-data
+      volumes:
+        - name: authentik-data
+          persistentVolumeClaim:
+            claimName: authentik-data-pvc
