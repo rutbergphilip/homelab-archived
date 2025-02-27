@@ -30,8 +30,12 @@ spec:
         enabled: false
     server:
       ingress:
-        ingressClassName: external
         enabled: true
+        ingressClassName: external
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
+          nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
         hosts:
           - &host "auth.${SECRET_DOMAIN}"
         tls:
