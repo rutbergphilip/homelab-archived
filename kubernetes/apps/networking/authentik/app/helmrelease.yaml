@@ -1,11 +1,12 @@
+---
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
-  name: authentik-charts
+  name: authentik
   namespace: flux-system
 spec:
-  interval: 1h
-  url: https://charts.goauthentik.io
+  interval: 12h
+  url: https://charts.goauthentik.io/
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
@@ -55,10 +56,18 @@ spec:
         annotations:
           external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
           nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+          gethomepage.dev/enabled: "true"
           cert-manager.io/cluster-issuer: "letsencrypt-production"
           hajimari.io/icon: simple-icons:authentik
         hosts:
-          - &host "authentik.${SECRET_DOMAIN}"
+          - &host "auth.${SECRET_DOMAIN}"
         tls:
           - hosts:
               - *host
+      resource:
+        requests:
+          cpu: 50m
+          memory: 500Mi
+        limits:
+          cpu: 100m
+          memory: 800Mi
