@@ -2,7 +2,6 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: authentik
-  namespace: networking
 spec:
   chart:
     spec:
@@ -17,21 +16,29 @@ spec:
   releaseName: authentik
   values:
     authentik:
-      secret_key: "PleaseGenerateASecureKey"
+      secret_key:
+        valueFrom:
+          secretKeyRef:
+            name: authentik-secrets
+            key: authentik_secret_key
       # This sends anonymous usage-data, stack traces on errors and
       # performance data to sentry.io, and is fully opt-in
       error_reporting:
         enabled: false
       postgresql:
-        password: "ThisIsNotASecurePassword"
+        password:
+          valueFrom:
+            secretKeyRef:
+              name: authentik-secrets
+              key: authentik_postgresql_password
 
     server:
       ingress:
         ingressClassName: external
         enabled: true
         annotations:
-          cert-manager.io/cluster-issuer: "letsencrypt-production"
           external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
           nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
         hosts:
           - &host auth.${SECRET_DOMAIN}
@@ -43,6 +50,10 @@ spec:
     postgresql:
       enabled: true
       auth:
-        password: "ThisIsNotASecurePassword"
+        password:
+          valueFrom:
+            secretKeyRef:
+              name: authentik-secrets
+              key: authentik_postgresql_password
     redis:
       enabled: true
