@@ -34,8 +34,18 @@ spec:
               - *host
     postgresql:
       enabled: true
+      primary:
+        persistence:
+          enabled: true
+          storageClass: local-hostpath
+          size: 10Gi
     redis:
       enabled: true
+      master:
+        persistence:
+          enabled: true
+          storageClass: local-hostpath
+          size: 10Gi
     global:
       env:
         - name: AUTHENTIK_SECRET_KEY
