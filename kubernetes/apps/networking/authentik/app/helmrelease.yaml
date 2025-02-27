@@ -1,11 +1,11 @@
 ---
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository
 metadata:
   name: authentik
   namespace: flux-system
 spec:
-  interval: 12h
+  interval: 15m
   url: https://charts.goauthentik.io/
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
@@ -14,60 +14,45 @@ metadata:
   name: authentik
   namespace: networking
 spec:
-  interval: 5m
-  install:
-    createNamespace: true
-  releaseName: authentik
   chart:
     spec:
       chart: authentik
-      version: latest
+      version: 2025.2.1
       sourceRef:
         kind: HelmRepository
-        name: authentik-charts
+        name: authentik
         namespace: flux-system
+  interval: 15m
+  timeout: 5m
+  releaseName: authentik
   values:
     authentik:
-      secret_key:
-        valueFrom:
-          secretKeyRef:
-            name: authentik-secret
-            key: secret_key
+      secret_key: "PleaseGenerateASecureKey"
+      # This sends anonymous usage-data, stack traces on errors and
+      # performance data to sentry.io, and is fully opt-in
+      error_reporting:
+        enabled: false
       postgresql:
-        password:
-          valueFrom:
-            secretKeyRef:
-              name: postgresql-password
-              key: password
-    postgresql:
-      enabled: true
-      auth:
-        password:
-          valueFrom:
-            secretKeyRef:
-              name: postgresql-password
-              key: password
-    redis:
-      enabled: true
+        password: "ThisIsNotASecurePassword"
+
     server:
       ingress:
-        enabled: true
         ingressClassName: external
+        enabled: true
         annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
           external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
           nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-          gethomepage.dev/enabled: "true"
-          cert-manager.io/cluster-issuer: "letsencrypt-production"
-          hajimari.io/icon: simple-icons:authentik
         hosts:
-          - &host "auth.${SECRET_DOMAIN}"
+          - &host auth.${SECRET_DOMAIN}
         tls:
           - hosts:
               - *host
-      resource:
-        requests:
-          cpu: 50m
-          memory: 500Mi
-        limits:
-          cpu: 100m
-          memory: 800Mi
+            secretName: authentik-tls
+
+    postgresql:
+      enabled: true
+      auth:
+        password: "ThisIsNotASecurePassword"
+    redis:
+      enabled: true

@@ -1,5 +1,4 @@
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
   name: &app authentik
@@ -13,7 +12,7 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: home-kubernetes
+    name: flux-system
   wait: false
   interval: 30m
   retryInterval: 1m
