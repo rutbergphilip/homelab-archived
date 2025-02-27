@@ -1,0 +1,64 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: authentik-charts
+  namespace: flux-system
+spec:
+  interval: 1h
+  url: https://charts.goauthentik.io
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: authentik
+  namespace: networking
+spec:
+  interval: 5m
+  install:
+    createNamespace: true
+  releaseName: authentik
+  chart:
+    spec:
+      chart: authentik
+      version: latest
+      sourceRef:
+        kind: HelmRepository
+        name: authentik-charts
+        namespace: flux-system
+  values:
+    authentik:
+      secret_key:
+        valueFrom:
+          secretKeyRef:
+            name: authentik-secret
+            key: secret_key
+      postgresql:
+        password:
+          valueFrom:
+            secretKeyRef:
+              name: postgresql-password
+              key: password
+    postgresql:
+      enabled: true
+      auth:
+        password:
+          valueFrom:
+            secretKeyRef:
+              name: postgresql-password
+              key: password
+    redis:
+      enabled: true
+    server:
+      ingress:
+        enabled: true
+        ingressClassName: external
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
+          nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
+          hajimari.io/icon: simple-icons:authentik
+        hosts:
+          - &host "authentik.${SECRET_DOMAIN}"
+        tls:
+          - hosts:
+              - *host
