@@ -68,6 +68,13 @@ spec:
       fsGroup: 1000
     securityContext:
       fsGroup: 1000
+    volumeMounts:
+      - mountPath: /data
+        name: authentik-data
+    volumes:
+      - name: authentik-data
+        persistentVolumeClaim:
+          claimName: authentik-data-pvc
     persistence:
       storageClass: local-hostpath
       size: 10Gi
