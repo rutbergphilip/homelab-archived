@@ -6,11 +6,12 @@ metadata:
   namespace: security
 spec:
   targetNamespace: security
-  interval: 5m
+  interval: 30m
   releaseName: authentik
   chart:
     spec:
       chart: authentik
+      version: 2025.2.1
       sourceRef:
         kind: HelmRepository
         name: authentik
