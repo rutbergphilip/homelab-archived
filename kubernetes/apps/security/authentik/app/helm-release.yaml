@@ -34,6 +34,8 @@ spec:
               - *host
     postgresql:
       enabled: true
+      auth:
+        password: "{{ .Values.global.env.POSTGRESQL_PASSWORD }}"
       primary:
         persistence:
           enabled: true
