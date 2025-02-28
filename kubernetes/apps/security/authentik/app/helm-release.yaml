@@ -79,3 +79,6 @@ spec:
         - name: authentik-data
           persistentVolumeClaim:
             claimName: authentik-data-pvc
+    persistence:
+      storageClass: local-hostpath
+      size: 10Gi
