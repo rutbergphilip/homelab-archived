@@ -22,7 +22,7 @@ spec:
       error_reporting:
         enabled: false
       postgresql:
-        password: ${POSTGRESQL_PASSWORD}
+        password: ${POSTGRES_PASSWORD}
     server:
       ingress:
         enabled: true
@@ -39,7 +39,7 @@ spec:
     postgresql:
       enabled: true
       auth:
-        password: ${POSTGRESQL_PASSWORD}
+        password: ${POSTGRES_PASSWORD}
     redis:
       enabled: true
     global:
@@ -59,7 +59,7 @@ spec:
             secretKeyRef:
               name: authentik-secrets
               key: AUTHENTIK_BOOTSTRAP_PASSWORD
-        - name: POSTGRESQL_PASSWORD
+        - name: POSTGRES_PASSWORD
           valueFrom:
             secretKeyRef:
               name: authentik-secrets
