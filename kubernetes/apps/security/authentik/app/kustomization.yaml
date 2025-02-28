@@ -5,4 +5,3 @@ kind: Kustomization
 resources:
   - ./secret.enc.yaml
   - ./helm-release.yaml
-  - ./storage.yaml
