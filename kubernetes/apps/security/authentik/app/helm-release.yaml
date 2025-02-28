@@ -17,8 +17,11 @@ spec:
         namespace: flux-system
   values:
     authentik:
+      secret_key: { { .Values.global.env.AUTHENTIK_SECRET_KEY } }
       error_reporting:
         enabled: false
+      postgresql:
+        password: { { .Values.global.env.POSTGRESQL_PASSWORD } }
     server:
       ingress:
         enabled: true
@@ -35,19 +38,9 @@ spec:
     postgresql:
       enabled: true
       auth:
-        password: "{{ .Values.global.env.POSTGRESQL_PASSWORD }}"
-      primary:
-        persistence:
-          enabled: true
-          storageClass: local-hostpath
-          size: 10Gi
+        password: { { .Values.global.env.POSTGRESQL_PASSWORD } }
     redis:
       enabled: true
-      master:
-        persistence:
-          enabled: true
-          storageClass: local-hostpath
-          size: 10Gi
     global:
       env:
         - name: AUTHENTIK_SECRET_KEY
