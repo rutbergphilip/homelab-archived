@@ -68,6 +68,10 @@ spec:
             secretKeyRef:
               name: authentik-secrets
               key: POSTGRESQL_PASSWORD
+      podSecurityContext:
+        fsGroup: 1000
+      securityContext:
+        fsGroup: 1000
       volumeMounts:
         - mountPath: /data
           name: authentik-data
