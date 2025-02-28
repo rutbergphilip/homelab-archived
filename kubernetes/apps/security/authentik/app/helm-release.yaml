@@ -6,7 +6,7 @@ metadata:
   namespace: security
 spec:
   targetNamespace: security
-  interval: 1h
+  interval: 5m
   releaseName: authentik
   chart:
     spec:
