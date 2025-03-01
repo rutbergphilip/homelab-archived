@@ -22,14 +22,14 @@ spec:
       error_reporting:
         enabled: false
       postgresql:
-        password: ${POSTGRES_PASSWORD}
+        password: ${POSTGRESQL_PASSWORD}
     server:
       ingress:
         enabled: true
         ingressClassName: external
         annotations:
           external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
-          nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+          # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
           cert-manager.io/cluster-issuer: "letsencrypt-production"
         hosts:
           - &host "auth.${SECRET_DOMAIN}"
@@ -39,7 +39,7 @@ spec:
     postgresql:
       enabled: true
       auth:
-        password: ${POSTGRES_PASSWORD}
+        password: ${POSTGRESQL_PASSWORD}
       primary:
         persistence:
           storageClass: local-hostpath
@@ -66,6 +66,11 @@ spec:
               name: authentik-secrets
               key: AUTHENTIK_BOOTSTRAP_PASSWORD
         - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: authentik-secrets
+              key: POSTGRESQL_PASSWORD
+        - name: POSTGRESQL_PASSWORD
           valueFrom:
             secretKeyRef:
               name: authentik-secrets
