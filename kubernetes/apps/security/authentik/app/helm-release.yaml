@@ -22,7 +22,7 @@ spec:
       error_reporting:
         enabled: false
       postgresql:
-        password: ${AUTHENTIK_POSTGRESQL__PASSWORD}
+        password: ${POSTGRES_PASSWORD}
     server:
       ingress:
         enabled: true
@@ -39,7 +39,7 @@ spec:
     postgresql:
       enabled: true
       auth:
-        password: ${AUTHENTIK_POSTGRESQL__PASSWORD}
+        password: ${POSTGRES_PASSWORD}
       primary:
         persistence:
           storageClass: local-hostpath
@@ -65,21 +65,21 @@ spec:
             secretKeyRef:
               name: authentik-secrets
               key: AUTHENTIK_BOOTSTRAP_PASSWORD
+        - name: POSTGRES_POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: authentik-secrets
+              key: POSTGRES_POSTGRES_PASSWORD
         - name: POSTGRES_PASSWORD
           valueFrom:
             secretKeyRef:
               name: authentik-secrets
-              key: POSTGRESQL_PASSWORD
+              key: POSTGRES_PASSWORD
         - name: AUTHENTIK_POSTGRESQL__PASSWORD
           valueFrom:
             secretKeyRef:
               name: authentik-secrets
-              key: POSTGRESQL_PASSWORD
-        - name: POSTGRESQL_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: authentik-secrets
-              key: POSTGRESQL_PASSWORD
+              key: POSTGRES_PASSWORD
     podSecurityContext:
       fsGroup: 1000
     securityContext:
