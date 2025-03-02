@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  namespace: home
+  namespace: home-automation
   name: homepage
   annotations:
     external-dns.alpha.kubernetes.io/target: "external.rutberg.dev"
@@ -16,6 +16,5 @@ spec:
             backend:
               service:
                 name: authentik-server
-                namespace: security
                 port:
                   number: 80

@@ -70,10 +70,6 @@ spec:
             secretKeyRef:
               name: authentik-secrets
               key: POSTGRES_PASSWORD
-    # podSecurityContext:
-    #   fsGroup: 1000
-    # securityContext:
-    #   fsGroup: 1000
     persistence:
       storageClass: local-hostpath
       size: 10Gi
