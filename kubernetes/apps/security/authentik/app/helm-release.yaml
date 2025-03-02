@@ -18,18 +18,20 @@ spec:
         namespace: flux-system
   values:
     authentik:
-      secret_key: ${AUTHENTIK_SECRET_KEY}
+      # secret_key: ${AUTHENTIK_SECRET_KEY}
+      secret_key: "ThisIsNotTheRealSecret"
       error_reporting:
         enabled: false
       postgresql:
-        password: ${POSTGRES_PASSWORD}
+        # password: ${POSTGRES_PASSWORD}
+        password: "ThisIsNotTheRealPassword"
     server:
       ingress:
         enabled: true
         ingressClassName: external
         annotations:
           external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
-          # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+          nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
           cert-manager.io/cluster-issuer: "letsencrypt-production"
         hosts:
           - &host "auth.${SECRET_DOMAIN}"
@@ -39,7 +41,8 @@ spec:
     postgresql:
       enabled: true
       auth:
-        password: ${POSTGRES_PASSWORD}
+        # password: ${POSTGRES_PASSWORD}
+        password: "ThisIsNotTheRealPassword"
       primary:
         persistence:
           storageClass: local-hostpath
@@ -55,35 +58,15 @@ spec:
             secretKeyRef:
               name: authentik-secrets
               key: AUTHENTIK_SECRET_KEY
-        - name: AUTHENTIK_BOOTSTRAP_TOKEN
-          valueFrom:
-            secretKeyRef:
-              name: authentik-secrets
-              key: AUTHENTIK_BOOTSTRAP_TOKEN
-        - name: AUTHENTIK_BOOTSTRAP_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: authentik-secrets
-              key: AUTHENTIK_BOOTSTRAP_PASSWORD
-        - name: POSTGRES_POSTGRES_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: authentik-secrets
-              key: POSTGRES_POSTGRES_PASSWORD
         - name: POSTGRES_PASSWORD
           valueFrom:
             secretKeyRef:
               name: authentik-secrets
               key: POSTGRES_PASSWORD
-        - name: AUTHENTIK_POSTGRESQL__PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: authentik-secrets
-              key: POSTGRES_PASSWORD
-    podSecurityContext:
-      fsGroup: 1000
-    securityContext:
-      fsGroup: 1000
+    # podSecurityContext:
+    #   fsGroup: 1000
+    # securityContext:
+    #   fsGroup: 1000
     persistence:
       storageClass: local-hostpath
       size: 10Gi
