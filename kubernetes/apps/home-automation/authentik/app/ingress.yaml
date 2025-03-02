@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: authentik-outpost
+  namespace: home-automation
+spec:
+  rules:
+    - host: auth.rutberg.dev
+      http:
+        paths:
+          - path: /outpost.goauthentik.io
+            pathType: Prefix
+            backend:
+              service:
+                name: ak-outpost-homepage
+                port:
+                  number: 9000
