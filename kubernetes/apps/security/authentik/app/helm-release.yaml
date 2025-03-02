@@ -3,11 +3,8 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: authentik
-  namespace: security
 spec:
-  targetNamespace: security
-  interval: 5m
-  releaseName: authentik
+  interval: 30m
   chart:
     spec:
       chart: authentik
@@ -16,6 +13,16 @@ spec:
         kind: HelmRepository
         name: authentik
         namespace: flux-system
+  maxHistory: 2
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
   values:
     authentik:
       # secret_key: ${AUTHENTIK_SECRET_KEY}
