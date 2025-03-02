@@ -16,5 +16,6 @@ spec:
             backend:
               service:
                 name: authentik
+                namespace: security
                 port:
                   number: 80
