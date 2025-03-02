@@ -3,4 +3,4 @@
 | Port Number | Description |
 | ----------- | ----------- |
 | 10000       | notes-app   |
-| 10010       | calendar    |
+| 10010       | homepage    |
