@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: adguard
   namespace: home-automation
+  labels:
+    app: homepage
 
 spec:
   replicas: 1
@@ -20,15 +22,17 @@ spec:
         fsGroup: 1000
       containers:
         - name: adguard
-          image: adguard/adguardhome:latest
+          image: adguard/adguardhome:v0.107.57
           imagePullPolicy: IfNotPresent
           resources:
             requests:
               memory: 128Mi
               cpu: 100m
+              ephemeral-storage: 1Gi
             limits:
               memory: 256Mi
               cpu: 300m
+              ephemeral-storage: 2Gi
           env:
             - name: AGH_CONFIG
               valueFrom:
