@@ -40,35 +40,38 @@ spec:
               memory: 512Mi
               cpu: 250m
           volumeMounts:
-            - name: homepage-data
-              mountPath: /app/config
-            - mountPath: /app/config/custom.js
-              name: homepage-data
-              subPath: custom.js
-            - mountPath: /app/config/custom.css
-              name: homepage-data
-              subPath: custom.css
-            - mountPath: /app/config/bookmarks.yaml
-              name: homepage-data
+            - name: homepage-config
+              mountPath: /app/config/bookmarks.yaml
               subPath: bookmarks.yaml
-            - mountPath: /app/config/docker.yaml
-              name: homepage-data
+            - name: homepage-config
+              mountPath: /app/config/docker.yaml
               subPath: docker.yaml
-            - mountPath: /app/config/kubernetes.yaml
-              name: homepage-data
+            - name: homepage-config
+              mountPath: /app/config/kubernetes.yaml
               subPath: kubernetes.yaml
-            - mountPath: /app/config/services.yaml
-              name: homepage-data
+            - name: homepage-config
+              mountPath: /app/config/services.yaml
               subPath: services.yaml
-            - mountPath: /app/config/settings.yaml
-              name: homepage-data
+            - name: homepage-config
+              mountPath: /app/config/settings.yaml
               subPath: settings.yaml
-            - mountPath: /app/config/widgets.yaml
-              name: homepage-data
+            - name: homepage-config
+              mountPath: /app/config/widgets.yaml
               subPath: widgets.yaml
-            - mountPath: /app/config/logs
-              name: logs
+            - name: homepage-config
+              mountPath: /app/config/custom.js
+              subPath: custom.js
+            - name: homepage-config
+              mountPath: /app/config/custom.css
+              subPath: custom.css
+            - name: homepage-data
+              mountPath: /app/config/logs
+            - name: homepage-data
+              mountPath: /app/config/icons
       volumes:
+        - name: homepage-config
+          configMap:
+            name: homepage
         - name: homepage-data
           persistentVolumeClaim:
             claimName: homepage-data-pvc
