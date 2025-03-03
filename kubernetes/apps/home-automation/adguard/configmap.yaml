@@ -7,13 +7,12 @@ metadata:
     app: adguard
     app.kubernetes.io/name: adguard
     app.kubernetes.io/instance: adguard
-
 data:
   AdGuardHome.yaml: |
     bind_host: 0.0.0.0
     bind_port: 3000
     beta_bind_port: 0
-    users: []  # Move users to secret
+    users: {}  # Changed from empty list to empty mapping
     language: "en"
     theme: "auto"
     dns:
@@ -26,17 +25,9 @@ data:
       querylog_enabled: true
       ratelimit: 20
       blocked_response_ttl: 10
-      bootstrap_dns:
-        - 1.1.1.1
-        - 8.8.8.8
+      bootstrap_dns: "1.1.1.1,8.8.8.8"  # Changed from a sequence to a comma-separated string
     tls:
       enabled: false
-    log:
-      file: ""
-      max_backups: 0
-      max_size: 100
-      max_age: 3
-      compress: false
-      local_time: false
+    log: ""  # Changed from a map of settings to a simple string
     security:
       protection_enabled: true
