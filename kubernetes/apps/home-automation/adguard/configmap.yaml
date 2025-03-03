@@ -4,7 +4,7 @@ metadata:
   name: adguard-config
   namespace: home-automation
   labels:
-    app: adguard-home
+    app: adguard
     app.kubernetes.io/name: adguard
     app.kubernetes.io/instance: adguard
 data:
