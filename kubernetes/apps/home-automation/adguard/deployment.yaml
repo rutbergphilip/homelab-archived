@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: adguard
   namespace: home-automation
+
 spec:
   replicas: 1
   strategy:
@@ -61,7 +62,7 @@ spec:
             periodSeconds: 5
           volumeMounts:
             - name: adguard-data
-              mountPath: /opt/adguardhome/work
+              mountPath: /opt/adguardhome/data
       volumes:
         - name: adguard-data
           persistentVolumeClaim:

@@ -9,6 +9,7 @@ metadata:
     app.kubernetes.io/instance: adguard
   annotations:
     description: "PVC for AdGuard Home configuration and data"
+
 spec:
   accessModes:
     - ReadWriteOnce
