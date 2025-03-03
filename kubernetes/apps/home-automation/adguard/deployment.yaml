@@ -5,7 +5,6 @@ metadata:
   namespace: home-automation
   labels:
     app: homepage
-
 spec:
   replicas: 1
   strategy:
@@ -20,6 +19,18 @@ spec:
     spec:
       securityContext:
         fsGroup: 1000
+      initContainers:
+        - name: copy-config
+          image: busybox:latest
+          command:
+            - sh
+            - -c
+            - cp /config/AdGuardHome.yaml /writable/AdGuardHome.yaml
+          volumeMounts:
+            - name: adguard-config
+              mountPath: /config
+            - name: config-writable
+              mountPath: /writable
       containers:
         - name: adguard
           image: adguard/adguardhome:v0.107.57
@@ -35,10 +46,7 @@ spec:
               ephemeral-storage: 2Gi
           env:
             - name: AGH_CONFIG
-              valueFrom:
-                configMapKeyRef:
-                  name: adguard-config
-                  key: AdGuardHome.yaml
+              value: /opt/adguardhome/conf/AdGuardHome.yaml
           ports:
             - containerPort: 53
               name: dns-udp
@@ -67,7 +75,7 @@ spec:
           volumeMounts:
             - name: adguard-data
               mountPath: /opt/adguardhome/data
-            - name: adguard-config
+            - name: config-writable
               mountPath: /opt/adguardhome/conf
       volumes:
         - name: adguard-data
@@ -76,3 +84,5 @@ spec:
         - name: adguard-config
           configMap:
             name: adguard-config
+        - name: config-writable
+          emptyDir: {}
