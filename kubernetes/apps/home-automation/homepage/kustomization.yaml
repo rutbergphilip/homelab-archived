@@ -5,7 +5,7 @@ kind: Kustomization
 namespace: home-automation
 
 resources:
-  - ./secrets/kustomization.yaml
+  - ./secrets
   - deployment.yaml
   - storage.yaml
   - ingress.yaml
