@@ -1,28 +1,21 @@
 apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: adguard-pv
-  namespace: home-automation
-spec:
-  capacity:
-    storage: 1Gi
-  accessModes:
-    - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Retain
-  hostPath:
-    path: "/mnt/data/adguard"
-  storageClassName: local-hostpath
----
-apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: adguard-pvc
   namespace: home-automation
+  labels:
+    app: adguard
+    app.kubernetes.io/name: adguard
+    app.kubernetes.io/instance: adguard
+  annotations:
+    description: "PVC for AdGuard Home configuration and data"
 spec:
   accessModes:
     - ReadWriteOnce
+  storageClassName: local-hostpath
   resources:
     requests:
       storage: 1Gi
-  storageClassName: local-hostpath
-  volumeName: adguard-pv
+  selector:
+    matchLabels:
+      app: adguard
