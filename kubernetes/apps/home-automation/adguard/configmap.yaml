@@ -22,19 +22,17 @@ data:
       querylog_enabled: true
       ratelimit: 20
       blocked_response_ttl: 10
-      bootstrap_dns:
-        - "1.1.1.1"
-        - "8.8.8.8"
+      bootstrap_dns: ["1.1.1.1", "8.8.8.8"]
     tls:
       enabled: false
     log:
-      file: "/var/log/adguardhome.log"
-      level: info
+      file: /var/log/adguardhome.log
+      verbose: false
+      compress: false
+      localtime: false
       max_backups: 0
       max_size: 100
       max_age: 3
-      compress: false
-      local_time: false
     web:
       bind_host: 0.0.0.0
       bind_port: 80
