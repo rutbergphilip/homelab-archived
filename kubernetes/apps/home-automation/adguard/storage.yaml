@@ -11,6 +11,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   hostPath:
     path: "/mnt/data/adguard"
+  storageClassName: local-hostpath
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
