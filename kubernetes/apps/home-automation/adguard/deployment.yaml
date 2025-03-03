@@ -20,18 +20,18 @@ spec:
     spec:
       securityContext:
         fsGroup: 1000
-      initContainers:
-        - name: copy-config
-          image: busybox:latest
-          command:
-            - sh
-            - -c
-            - cp /config/AdGuardHome.yaml /writable/AdGuardHome.yaml
-          volumeMounts:
-            - name: adguard-config
-              mountPath: /config
-            - name: config-writable
-              mountPath: /writable
+      # initContainers:
+      #   - name: copy-config
+      #     image: busybox:latest
+      #     command:
+      #       - sh
+      #       - -c
+      #       - cp /config/AdGuardHome.yaml /writable/AdGuardHome.yaml
+      #     volumeMounts:
+      #       - name: adguard-config
+      #         mountPath: /config
+      #       - name: config-writable
+      #         mountPath: /writable
       containers:
         - name: adguard
           image: adguard/adguardhome:v0.107.57
@@ -47,7 +47,10 @@ spec:
               ephemeral-storage: 2Gi
           env:
             - name: AGH_CONFIG
-              value: /opt/adguardhome/conf/AdGuardHome.yaml
+              valueFrom:
+                configMapKeyRef:
+                  name: adguard-config
+                  key: AdGuardHome.yaml
           ports:
             - containerPort: 53
               name: dns-udp
@@ -72,15 +75,8 @@ spec:
             periodSeconds: 5
           volumeMounts:
             - name: adguard-data
-              mountPath: /opt/adguardhome/data
-            - name: config-writable
-              mountPath: /opt/adguardhome/conf
+              mountPath: /opt/adguardhome/work
       volumes:
         - name: adguard-data
           persistentVolumeClaim:
             claimName: adguard-pvc
-        - name: adguard-config
-          configMap:
-            name: adguard-config
-        - name: config-writable
-          emptyDir: {}
