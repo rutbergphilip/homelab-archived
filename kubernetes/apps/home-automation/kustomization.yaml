@@ -5,6 +5,5 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - ./authentik/ks.yaml
-  - ./homepage/ks.yaml
-  # - ./homepage
+  - ./homepage
   - ./adguard
