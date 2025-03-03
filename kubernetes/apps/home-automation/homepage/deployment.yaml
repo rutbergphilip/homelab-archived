@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: home-automation
+  name: homepage
+  labels:
+    app: homepage
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: homepage
+  template:
+    metadata:
+      labels:
+        app: homepage
+    spec:
+      securityContext:
+        fsGroup: 1000
+      containers:
+        - name: homepage
+          image: ghcr.io/gethomepage/homepage:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3000
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3000
+          resources:
+            requests:
+              memory: 512Mi
+              cpu: 10m
+            limits:
+              memory: 512Mi
+              cpu: 250m
+          volumeMounts:
+            - name: homepage-data
+              mountPath: /app/config
+      volumes:
+        - name: homepage-data
+          persistentVolumeClaim:
+            claimName: homepage-data-pvc

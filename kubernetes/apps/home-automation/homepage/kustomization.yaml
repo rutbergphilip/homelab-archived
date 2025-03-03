@@ -1,0 +1,9 @@
+apiVersion: kustomization.yaml/v1beta1
+kind: Kustomization
+
+resources:
+  - configmap.yaml
+  - deployment.yaml
+  - ingress.yaml
+  - service.yaml
+  - storage.yaml
