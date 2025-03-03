@@ -22,7 +22,7 @@ data:
       querylog_enabled: true
       ratelimit: 20
       blocked_response_ttl: 10
-      bootstrap_dns: ["1.1.1.1", "8.8.8.8"]
+      bootstrap_dns: 1.1.1.1,8.8.8.8
     tls:
       enabled: false
     log:
