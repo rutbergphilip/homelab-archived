@@ -5,15 +5,10 @@ metadata:
   namespace: home-automation
   labels:
     app: adguard
-    app.kubernetes.io/name: adguard
-    app.kubernetes.io/instance: adguard
-  annotations:
-    description: "PVC for AdGuard Home configuration and data"
 
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: local-hostpath
   resources:
     requests:
       storage: 1Gi

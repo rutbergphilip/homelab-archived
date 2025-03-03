@@ -5,19 +5,12 @@ metadata:
   namespace: home-automation
   labels:
     app: adguard
-  annotations:
-    prometheus.io/scrape: "true"
-    prometheus.io/port: "3000"
 
 spec:
   selector:
     app: adguard
   ports:
-    - name: web-admin
-      protocol: TCP
-      port: 3000
-      targetPort: 3000
-    - name: web-interface
+    - name: http
       protocol: TCP
       port: 80
       targetPort: 80

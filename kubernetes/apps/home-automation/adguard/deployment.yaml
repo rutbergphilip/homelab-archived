@@ -4,7 +4,8 @@ metadata:
   name: adguard
   namespace: home-automation
   labels:
-    app: homepage
+    app: adguard
+
 spec:
   replicas: 1
   strategy:
@@ -54,22 +55,19 @@ spec:
             - containerPort: 53
               name: dns-tcp
               protocol: TCP
-            - containerPort: 3000
-              name: http-initial
-              protocol: TCP
             - containerPort: 80
               name: http
               protocol: TCP
           livenessProbe:
             httpGet:
               path: /
-              port: 3000
+              port: 80
             initialDelaySeconds: 60
             periodSeconds: 10
           readinessProbe:
             httpGet:
               path: /
-              port: 3000
+              port: 80
             initialDelaySeconds: 30
             periodSeconds: 5
           volumeMounts:
