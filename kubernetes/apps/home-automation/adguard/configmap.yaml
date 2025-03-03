@@ -12,7 +12,6 @@ data:
     bind_host: 0.0.0.0
     bind_port: 3000
     beta_bind_port: 0
-    users: {}  # Changed from empty list to empty mapping
     language: "en"
     theme: "auto"
     dns:
@@ -25,9 +24,17 @@ data:
       querylog_enabled: true
       ratelimit: 20
       blocked_response_ttl: 10
-      bootstrap_dns: "1.1.1.1,8.8.8.8"  # Changed from a sequence to a comma-separated string
+      bootstrap_dns: "1.1.1.1,8.8.8.8"
     tls:
       enabled: false
-    log: ""  # Changed from a map of settings to a simple string
+    log:
+      file: "/var/log/adguardhome.log"
+      max_backups: 0
+      max_size: 100
+      max_age: 3
+      compress: false
+      local_time: false
+    web:
+      users: []
     security:
       protection_enabled: true
