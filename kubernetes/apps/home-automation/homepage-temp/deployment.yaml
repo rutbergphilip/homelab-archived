@@ -5,6 +5,7 @@ metadata:
   name: homepage
   labels:
     app: homepage
+
 spec:
   replicas: 1
   selector:
