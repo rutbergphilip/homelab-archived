@@ -3,6 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: homepage-data-pvc
   namespace: home-automation
+
 spec:
   accessModes:
     - ReadWriteOnce

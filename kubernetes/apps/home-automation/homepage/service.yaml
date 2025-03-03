@@ -4,6 +4,7 @@ kind: Service
 metadata:
   name: homepage
   namespace: home-automation
+
 spec:
   type: ClusterIP
   ports:

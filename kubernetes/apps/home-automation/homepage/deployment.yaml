@@ -43,28 +43,28 @@ spec:
             - name: homepage-data
               mountPath: /app/config
             - mountPath: /app/config/custom.js
-              name: homepage-config
+              name: homepage-data
               subPath: custom.js
             - mountPath: /app/config/custom.css
-              name: homepage-config
+              name: homepage-data
               subPath: custom.css
             - mountPath: /app/config/bookmarks.yaml
-              name: homepage-config
+              name: homepage-data
               subPath: bookmarks.yaml
             - mountPath: /app/config/docker.yaml
-              name: homepage-config
+              name: homepage-data
               subPath: docker.yaml
             - mountPath: /app/config/kubernetes.yaml
-              name: homepage-config
+              name: homepage-data
               subPath: kubernetes.yaml
             - mountPath: /app/config/services.yaml
-              name: homepage-config
+              name: homepage-data
               subPath: services.yaml
             - mountPath: /app/config/settings.yaml
-              name: homepage-config
+              name: homepage-data
               subPath: settings.yaml
             - mountPath: /app/config/widgets.yaml
-              name: homepage-config
+              name: homepage-data
               subPath: widgets.yaml
             - mountPath: /app/config/logs
               name: logs
