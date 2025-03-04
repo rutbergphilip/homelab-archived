@@ -25,6 +25,7 @@ data:
         - Authentik:
             href: https://auth.rutberg.dev/
             description: Authentication service
+            icon: authentik.png
             widget:
               type: authentik
               url: https://auth.rutberg.dev/
@@ -36,6 +37,7 @@ data:
         - Grafana:
             href: https://grafana.rutberg.dev/
             description: Grafana dashboard
+            icon: grafana.png
             widget:
               type: grafana
               url: https://grafana.rutberg.dev/
