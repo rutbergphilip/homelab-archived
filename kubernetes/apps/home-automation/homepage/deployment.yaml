@@ -5,6 +5,8 @@ metadata:
   name: homepage
   labels:
     app: homepage
+  annotations:
+    configmap.reloader.stakater.com/reload: "homepage"
 
 spec:
   replicas: 1
