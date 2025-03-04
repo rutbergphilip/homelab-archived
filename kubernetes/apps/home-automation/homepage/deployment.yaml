@@ -28,37 +28,6 @@ spec:
       securityContext:
         fsGroup: 1000
 
-      initContainers:
-        - name: config-substitution
-          image: alpine
-          command:
-            [
-              "sh",
-              "-c",
-              "envsubst < /config/services.yaml > /expanded/services.yaml",
-            ]
-          env:
-            - name: GRAFANA_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: grafana-credentials
-                  key: username
-            - name: GRAFANA_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: grafana-credentials
-                  key: password
-            - name: AUTHENTIK_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: authentik-key
-                  key: api_key
-          volumeMounts:
-            - name: homepage-config
-              mountPath: /config
-            - name: homepage-config-expanded
-              mountPath: /expanded
-
       containers:
         - name: homepage
           image: ghcr.io/gethomepage/homepage:latest
@@ -111,7 +80,7 @@ spec:
             - name: homepage-config
               mountPath: /app/config/kubernetes.yaml
               subPath: kubernetes.yaml
-            - name: homepage-config-expanded
+            - name: homepage-config
               mountPath: /app/config/services.yaml
               subPath: services.yaml
             - name: homepage-config
@@ -135,8 +104,6 @@ spec:
         - name: homepage-config
           configMap:
             name: homepage
-        - name: homepage-config-expanded
-          emptyDir: {}
         - name: homepage-data
           persistentVolumeClaim:
             claimName: homepage-data-pvc
