@@ -21,22 +21,26 @@ data:
             - abbr: GH
               href: https://github.com/rutbergphilip
   services.yaml: |
-    - Observability:
-        - Grafana:
-            href: http://grafana.rutberg.dev/
-            description: Homepage is awesome
-            password: ${GRAFANA_PASSWORD}
-            username: ${GRAFANA_USERNAME}
+    - Cluster Management:
         - Authentik:
-            href: http://auth.rutberg.dev/
+            href: https://auth.rutberg.dev/
             description: Authentication service
-            key: JEK0WeLw5Pv5CCfIZRSDH3lXwitkVt9DCXK2ubifnEbSTD9BEHIGBvtiML9V
             widget:
               type: authentik
-              url: http://auth.rutberg.dev/
+              url: https://auth.rutberg.dev/
+              key: JEK0WeLw5Pv5CCfIZRSDH3lXwitkVt9DCXK2ubifnEbSTD9BEHIGBvtiML9V
               users: true
               loginsLast24H: true
               failedLoginsLast24H: true
+    - Observability:
+        - Grafana:
+            href: https://grafana.rutberg.dev/
+            description: Grafana dashboard
+            widget:
+              type: grafana
+              url: https://grafana.rutberg.dev/
+              username: ${GRAFANA_USERNAME}
+              password: ${GRAFANA_PASSWORD}
 
   widgets.yaml: |
     - kubernetes:

@@ -3,12 +3,6 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: grafana
-  annotations:
-    gethomepage.dev/name: Grafana
-    gethomepage.dev/description: Provides monitoring and visualization for the cluster
-    gethomepage.dev/enabled: "true"
-    gethomepage.dev/group: Observability
-    gethomepage.dev/icon: grafana.png
 
 spec:
   interval: 30m
