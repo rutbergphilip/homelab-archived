@@ -47,6 +47,11 @@ spec:
                 secretKeyRef:
                   name: grafana-credentials
                   key: password
+            - name: AUTHENTIK_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: authentik-key
+                  key: api_key
 
           livenessProbe:
             httpGet:
