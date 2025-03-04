@@ -50,13 +50,12 @@ data:
           showLabel: true
     - resources:
         backend: resources
-        expanded: true
         cpu: true
         memory: true
         network: default
     - grafana:
         type: grafana
-        url: http://grafana.observability.svc.cluster.local:3000
+        url: https://grafana.rutberg.dev
         username: "${GRAFANA_USERNAME}"
         password: "${GRAFANA_PASSWORD}"
     - search:
