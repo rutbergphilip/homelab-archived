@@ -28,19 +28,16 @@ data:
             password: ${GRAFANA_PASSWORD}
             username: ${GRAFANA_USERNAME}
         - Authentik:
-            href: http://auth.rutberg.dev/
-            description: Authentication service
-            key: test-token
+                  href: http://auth.rutberg.dev/
+                  description: Authentication service
+                  key: test-token
+                  widget:
+                    type: authentik
+                    url: http://auth.rutberg.dev/
+                    users: true
+                    loginsLast24H: true
+                    failedLoginsLast24H: true
 
-    - My Second Group:
-        - My Second Service:
-            href: http://localhost/
-            description: Homepage is the best
-
-    - My Third Group:
-        - My Third Service:
-            href: http://localhost/
-            description: Homepage is 😎
   widgets.yaml: |
     - kubernetes:
         cluster:
