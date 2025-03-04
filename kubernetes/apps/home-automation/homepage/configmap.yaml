@@ -61,4 +61,11 @@ data:
     - search:
         provider: duckduckgo
         target: _blank
+    - datetime:
+        text_size: xl
+        locale: se
+        format:
+          timeStyle: short
+          dateStyle: short
+          hourCycle: h24
   docker.yaml: ""
