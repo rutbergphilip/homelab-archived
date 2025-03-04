@@ -56,7 +56,7 @@ data:
         network: default
     - grafana:
         type: grafana
-        url: https://grafana.rutberg.dev/
+        url: http://grafana.observability.svc.cluster.local:3000
         username: "${GRAFANA_USERNAME}"
         password: "${GRAFANA_PASSWORD}"
     - search:
