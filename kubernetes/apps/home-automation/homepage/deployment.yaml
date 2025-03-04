@@ -6,7 +6,7 @@ metadata:
   labels:
     app: homepage
   annotations:
-    configmap.reloader.stakater.com/reload: "homepage"
+    reloader.stakater.com/auto: "true"
 
 spec:
   replicas: 1
