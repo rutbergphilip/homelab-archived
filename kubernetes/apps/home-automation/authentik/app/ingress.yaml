@@ -3,6 +3,13 @@ kind: Ingress
 metadata:
   name: authentik-outpost
   namespace: home-automation
+  annotations:
+    gethomepage.dev/name: Authentik
+    gethomepage.dev/description: Provides authentication for the cluster
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: Cluster Management
+    gethomepage.dev/icon: authentik.png
+
 spec:
   rules:
     - host: auth.rutberg.dev
