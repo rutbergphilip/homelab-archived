@@ -8,6 +8,8 @@ metadata:
 
 spec:
   replicas: 1
+  strategy:
+    type: RollingUpdate
   selector:
     matchLabels:
       app: homepage
@@ -16,6 +18,7 @@ spec:
       labels:
         app: homepage
     spec:
+      serviceAccountName: homepage
       securityContext:
         fsGroup: 1000
       containers:
