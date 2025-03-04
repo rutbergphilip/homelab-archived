@@ -28,15 +28,15 @@ data:
             password: ${GRAFANA_PASSWORD}
             username: ${GRAFANA_USERNAME}
         - Authentik:
-                  href: http://auth.rutberg.dev/
-                  description: Authentication service
-                  key: JEK0WeLw5Pv5CCfIZRSDH3lXwitkVt9DCXK2ubifnEbSTD9BEHIGBvtiML9V
-                  widget:
-                    type: authentik
-                    url: http://auth.rutberg.dev/
-                    users: true
-                    loginsLast24H: true
-                    failedLoginsLast24H: true
+            href: http://auth.rutberg.dev/
+            description: Authentication service
+            key: JEK0WeLw5Pv5CCfIZRSDH3lXwitkVt9DCXK2ubifnEbSTD9BEHIGBvtiML9V
+            widget:
+              type: authentik
+              url: http://auth.rutberg.dev/
+              users: true
+              loginsLast24H: true
+              failedLoginsLast24H: true
 
   widgets.yaml: |
     - kubernetes:
