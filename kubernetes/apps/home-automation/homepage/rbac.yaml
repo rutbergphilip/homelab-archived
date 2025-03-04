@@ -8,7 +8,6 @@ metadata:
     app.kubernetes.io/name: homepage
 secrets:
   - name: homepage
-
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -63,4 +62,4 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: homepage
-    namespace: default
+    namespace: home-automation
