@@ -59,7 +59,7 @@ data:
         password: ${GRAFANA_PASSWORD}
     - authentik:
         url: https://auth.rutberg.dev
-        key: ${AUTHENTIK_KEY}
+        key: test-token
     - search:
         provider: duckduckgo
         target: _blank
