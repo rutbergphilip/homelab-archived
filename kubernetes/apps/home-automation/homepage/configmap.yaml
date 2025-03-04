@@ -35,12 +35,12 @@ data:
               failedLoginsLast24H: true
     - Observability:
         - Grafana:
-            href: https://grafana.rutberg.dev/
+            href: https://grafana.rutberg.dev
             description: Grafana dashboard
             icon: grafana.png
             widget:
               type: grafana
-              url: https://grafana.rutberg.dev/
+              url: https://grafana.rutberg.dev
               username: ${GRAFANA_USERNAME}
               password: ${GRAFANA_PASSWORD}
 
