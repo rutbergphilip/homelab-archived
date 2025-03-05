@@ -6,10 +6,10 @@ namespace: home-automation
 
 resources:
   - ./secrets
-  - config.enc.yaml
   - deployment.yaml
   - storage.yaml
   - ingress.yaml
   - service.yaml
+  - config.enc.yaml
   - serviceaccount.yaml
   - rbac.yaml
