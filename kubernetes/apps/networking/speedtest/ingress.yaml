@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: speedtest-tracker
+  namespace: networking
+  annotations:
+    external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
+    hajimari.io/icon: mdi:speedometer
+    hajimari.io/appName: "Speedtest Tracker"
+spec:
+  ingressClassName: external
+  rules:
+    - host: &host "speedtest.${SECRET_DOMAIN}"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: speedtest-tracker
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - *host

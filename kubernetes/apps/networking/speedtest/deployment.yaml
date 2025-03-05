@@ -1,0 +1,93 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: speedtest-tracker
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: speedtest-tracker
+
+  template:
+    metadata:
+      labels:
+        app: speedtest-tracker
+
+    spec:
+      dnsPolicy: None
+      dnsConfig:
+        nameservers:
+          - 10.152.183.10
+          - 8.8.8.8
+        searches:
+          - speedtest-tracker.svc.cluster.local
+        options:
+          - name: ndots
+            value: "5"
+
+      containers:
+        - name: speedtest-tracker
+          image: lscr.io/linuxserver/speedtest-tracker:latest
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+            - name: DISPLAY_TIMEZONE
+              value: UTC
+            - name: SPEEDTEST_SCHEDULE
+              value: "*/5 * * * *"
+            - name: SPEEDTEST_SERVERS
+              value: "1,2,3,4"
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: DB_PASSWORD
+            - name: DB_CONNECTION
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: DB_CONNECTION
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: DB_HOST
+            - name: DB_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: DB_PORT
+            - name: DB_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: DB_DATABASE
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: DB_USERNAME
+            - name: APP_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: app-key
+                  key: app-key
+
+          resources:
+            limits:
+              cpu: 100m
+              memory: 512Mi
+            requests:
+              cpu: 50m
+              memory: 256Mi
+
+          volumeMounts:
+            - mountPath: /config
+              name: speedtest-tracker
+      volumes:
+        - name: speedtest-tracker
+          persistentVolumeClaim:
+            claimName: speedtest-tracker
