@@ -72,33 +72,36 @@ spec:
 
           volumeMounts:
             - name: homepage-config
-              mountPath: /app/config/bookmarks.yaml
-              subPath: bookmarks.yaml
-            - name: homepage-config
-              mountPath: /app/config/docker.yaml
-              subPath: docker.yaml
-            - name: homepage-config
-              mountPath: /app/config/kubernetes.yaml
-              subPath: kubernetes.yaml
-            - name: homepage-config
-              mountPath: /app/config/services.yaml
-              subPath: services.yaml
-            - name: homepage-config
-              mountPath: /app/config/settings.yaml
-              subPath: settings.yaml
-            - name: homepage-config
-              mountPath: /app/config/widgets.yaml
-              subPath: widgets.yaml
-            - name: homepage-config
-              mountPath: /app/config/custom.js
-              subPath: custom.js
-            - name: homepage-config
-              mountPath: /app/config/custom.css
-              subPath: custom.css
-            - name: homepage-data
-              mountPath: /app/config/logs
-            - name: homepage-data
-              mountPath: /app/config/icons
+              mountPath: /app/config
+          # volumeMounts:
+          #   - name: homepage-config
+          #     mountPath: /app/config/bookmarks.yaml
+          #     subPath: bookmarks.yaml
+          #   - name: homepage-config
+          #     mountPath: /app/config/docker.yaml
+          #     subPath: docker.yaml
+          #   - name: homepage-config
+          #     mountPath: /app/config/kubernetes.yaml
+          #     subPath: kubernetes.yaml
+          #   - name: homepage-config
+          #     mountPath: /app/config/services.yaml
+          #     subPath: services.yaml
+          #   - name: homepage-config
+          #     mountPath: /app/config/settings.yaml
+          #     subPath: settings.yaml
+          #   - name: homepage-config
+          #     mountPath: /app/config/widgets.yaml
+          #     subPath: widgets.yaml
+          #   - name: homepage-config
+          #     mountPath: /app/config/custom.js
+          #     subPath: custom.js
+          #   - name: homepage-config
+          #     mountPath: /app/config/custom.css
+          #     subPath: custom.css
+          #   - name: homepage-data
+          #     mountPath: /app/config/logs
+          #   - name: homepage-data
+          #     mountPath: /app/config/icons
 
       volumes:
         - name: homepage-config
