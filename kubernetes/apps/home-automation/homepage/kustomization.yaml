@@ -10,5 +10,6 @@ resources:
   - storage.yaml
   - ingress.yaml
   - service.yaml
+  - configmap.yaml
   - serviceaccount.yaml
   - rbac.yaml
