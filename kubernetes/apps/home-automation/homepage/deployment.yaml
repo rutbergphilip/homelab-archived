@@ -104,9 +104,6 @@ spec:
         - name: homepage-config
           secret:
             secretName: homepage-config
-        # - name: homepage-config
-        #   configMap:
-        #     name: homepage
         - name: homepage-data
           persistentVolumeClaim:
             claimName: homepage-data-pvc
