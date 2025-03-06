@@ -39,7 +39,7 @@ spec:
             - name: DB_CONNECTION
               valueFrom:
                 secretKeyRef:
-                  name: postgres-credentials
+                  name: speedtest-db-connection
                   key: DB_CONNECTION
             # - name: DB_HOST
             #   valueFrom:
