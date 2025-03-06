@@ -65,6 +65,8 @@ spec:
                 secretKeyRef:
                   name: app-key
                   key: app-key
+            - name: APP_DEBUG
+              value: "true"
 
           resources:
             limits:
