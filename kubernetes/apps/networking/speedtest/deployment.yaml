@@ -30,7 +30,7 @@ spec:
             - name: SPEEDTEST_SCHEDULE
               value: "*/5 * * * *"
             - name: SPEEDTEST_SERVERS
-              value: "1,2,3,4"
+              value: "26852,53521,6061"
             - name: DB_CONNECTION
               valueFrom:
                 secretKeyRef:
