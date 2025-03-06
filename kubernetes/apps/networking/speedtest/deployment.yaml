@@ -53,12 +53,12 @@ spec:
                   key: password
 
           resources:
-            limits:
-              cpu: 100m
-              memory: 512Mi
             requests:
-              cpu: 50m
+              cpu: 100m
               memory: 256Mi
+            limits:
+              cpu: 300m
+              memory: 512Mi
 
           volumeMounts:
             - mountPath: /config
