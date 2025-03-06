@@ -15,6 +15,7 @@ spec:
         app: speedtest-tracker
 
     spec:
+      dnsPolicy: ClusterFirst
       containers:
         - name: speedtest-tracker
           image: lscr.io/linuxserver/speedtest-tracker:latest
