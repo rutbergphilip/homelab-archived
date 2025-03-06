@@ -5,7 +5,6 @@ namespace: networking
 resources:
   - secrets
   - deployment.yaml
-  - postgres.yaml
   - service.yaml
   - storage.yaml
   - ingress.yaml
