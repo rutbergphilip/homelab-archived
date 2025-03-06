@@ -41,6 +41,16 @@ spec:
                 secretKeyRef:
                   name: app-key
                   key: app-key
+            - name: ADMIN_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: credentials
+                  key: email
+            - name: ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: credentials
+                  key: password
 
           resources:
             limits:
