@@ -12,3 +12,5 @@ kubeconfig
 .venv*
 # Taskfile
 .tasks
+
+readable.config.sops.yaml
