@@ -31,43 +31,16 @@ spec:
               value: "*/5 * * * *"
             - name: SPEEDTEST_SERVERS
               value: "1,2,3,4"
-            # - name: POSTGRES_PASSWORD
-            #   valueFrom:
-            #     secretKeyRef:
-            #       name: postgres-credentials
-            #       key: DB_PASSWORD
             - name: DB_CONNECTION
               valueFrom:
                 secretKeyRef:
                   name: speedtest-db-connection
                   key: DB_CONNECTION
-            # - name: DB_HOST
-            #   valueFrom:
-            #     secretKeyRef:
-            #       name: postgres-credentials
-            #       key: DB_HOST
-            # - name: DB_PORT
-            #   valueFrom:
-            #     secretKeyRef:
-            #       name: postgres-credentials
-            #       key: DB_PORT
-            # - name: DB_DATABASE
-            #   valueFrom:
-            #     secretKeyRef:
-            #       name: postgres-credentials
-            #       key: DB_DATABASE
-            # - name: DB_USERNAME
-            #   valueFrom:
-            #     secretKeyRef:
-            #       name: postgres-credentials
-            #       key: DB_USERNAME
-            # - name: APP_KEY
-            #   valueFrom:
-            #     secretKeyRef:
-            #       name: app-key
-            #       key: app-key
-            # - name: APP_DEBUG
-            #   value: "true"
+            - name: APP_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: app-key
+                  key: app-key
 
           resources:
             limits:
