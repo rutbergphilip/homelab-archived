@@ -7,11 +7,11 @@ spec:
   interval: 30m
   chart:
     spec:
-      chart: qbittorrent
-      version: 0.4.1
+      chart: app-template
+      version: 2.4.0
       sourceRef:
         kind: HelmRepository
-        name: qbittorrent
+        name: bjw-s
         namespace: flux-system
   maxHistory: 2
   install:
@@ -24,33 +24,20 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    server:
-      ingress:
-        enabled: true
-        ingressClassName: external
+    controllers:
+      main:
         annotations:
-          external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
-          nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-          cert-manager.io/cluster-issuer: "letsencrypt-production"
-        hosts:
-          - &host "qbittorrent.${SECRET_DOMAIN}"
-        tls:
-          - hosts:
-              - *host
-    global:
-      env:
-        - name: PUID
-          value: "1000"
-        - name: PGID
-          value: "1000"
-        - name: TZ
-          value: "Europe/Stockholm"
-        - name: DOCKER_MODS
-          value: "ghcr.io/gabe565/linuxserver-mod-vuetorrent"
-    persistence:
-      enabled: true
-      storageClass: local-hostpath
-      size: 10Gi
-      vuetorrent:
-        enabled: true
-        type: emptyDir
+          reloader.stakater.com/auto: "true"
+        containers:
+          main:
+            image:
+              repository: ghcr.io/onedr0p/qbittorrent
+              tag: latest
+            env:
+              TZ: Europe/Stockholm
+            resources:
+              requests:
+                cpu: 100m
+                memory: 512Mi
+              limits:
+                memory: 4Gi
