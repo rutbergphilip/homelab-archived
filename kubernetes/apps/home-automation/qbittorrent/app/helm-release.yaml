@@ -2,6 +2,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: qbittorrent
+  namespace: home-automation
 spec:
   interval: 30m
   chart:
@@ -23,6 +24,9 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    global:
+      labels:
+        app: qbittorrent
     service:
       type: ClusterIP
       port: 8080
