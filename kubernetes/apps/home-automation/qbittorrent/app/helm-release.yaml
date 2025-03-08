@@ -1,17 +1,17 @@
+---
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: qbittorrent
-  namespace: home-automation
 spec:
   interval: 30m
   chart:
     spec:
-      chart: qbittorrent
-      version: 14.1.0
+      chart: app-template
+      version: 2.4.0
       sourceRef:
         kind: HelmRepository
-        name: qbittorrent
+        name: bjw-s
         namespace: flux-system
   maxHistory: 2
   install:
@@ -24,39 +24,32 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    server:
+      ingress:
+        enabled: true
+        ingressClassName: external
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
+          nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
+        hosts:
+          - &host "qbittorrent.${SECRET_DOMAIN}"
+        tls:
+          - hosts:
+              - *host
     global:
-      labels:
-        app: qbittorrent
-    service:
-      type: ClusterIP
-      port: 8080
-    ingress:
-      enabled: true
-      ingressClassName: external
-      annotations:
-        external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
-        nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-        cert-manager.io/cluster-issuer: "letsencrypt-production"
-      hosts:
-        - &host "qbittorrent.${SECRET_DOMAIN}"
-      tls:
-        - hosts:
-            - *host
+      env:
+        - name: PUID
+          value: "1000"
+        - name: PGID
+          value: "1000"
+        - name: TZ
+          value: "Europe/Stockholm"
+        - name: DOCKER_MODS
+          value: "ghcr.io/gabe565/linuxserver-mod-vuetorrent"
     persistence:
-      config:
+      storageClass: local-hostpath
+      size: 10Gi
+      vuetorrent:
         enabled: true
-        accessMode: ReadWriteOnce
-        storageClass: local-hostpath
-        size: 1Gi
-      downloads:
-        enabled: true
-        accessMode: ReadWriteOnce
-        storageClass: local-hostpath
-        size: 10Gi
-    securityContext:
-      fsGroup: 1000
-      runAsUser: 1000
-    env:
-      TZ: "Europe/Stockholm"
-      PUID: 1000
-      PGID: 1000
+        type: emptyDir
