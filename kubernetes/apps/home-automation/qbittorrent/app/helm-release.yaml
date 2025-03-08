@@ -1,4 +1,3 @@
----
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
@@ -8,7 +7,7 @@ spec:
   chart:
     spec:
       chart: qbittorrent
-      version: 5.0.4
+      version: 14.1.0
       sourceRef:
         kind: HelmRepository
         name: qbittorrent
@@ -24,65 +23,34 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    image:
-      repository: ghcr.io/onedr0p/qbittorrent
-      tag: 5.0.4
-    controllers:
-      main:
-        replicas: 1
-        strategy: RollingUpdate
-        containers:
-          main:
-            env:
-              - name: PUID
-                value: "1000"
-              - name: PGID
-                value: "1000"
-              - name: TZ
-                value: "${TIMEZONE}"
-            ports:
-              - containerPort: 8080
-                name: web
-            resources:
-              requests:
-                cpu: 100m
-                memory: 128Mi
-              limits:
-                cpu: 200m
-                memory: 256Mi
     service:
-      main:
-        ports:
-          web:
-            port: 8080
+      type: ClusterIP
+      port: 8080
     ingress:
-      main:
-        enabled: true
-        className: external
-        annotations:
-          external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
-          nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-          cert-manager.io/cluster-issuer: "letsencrypt-production"
-        hosts:
-          - host: "qbittorrent.${SECRET_DOMAIN}"
-            paths:
-              - path: /
-                service:
-                  name: main
-                  port: web
-        tls:
-          - hosts:
-              - "qbittorrent.${SECRET_DOMAIN}"
+      enabled: true
+      ingressClassName: external
+      annotations:
+        external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
+        nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+        cert-manager.io/cluster-issuer: "letsencrypt-production"
+      hosts:
+        - &host "qbittorrent.${SECRET_DOMAIN}"
+      tls:
+        - hosts:
+            - *host
     persistence:
       config:
         enabled: true
-        type: pvc
-        name: qbittorrent-config
-        size: 1Gi
         storageClass: local-hostpath
+        size: 1Gi
       downloads:
         enabled: true
-        type: pvc
-        name: qbittorrent-downloads
-        size: 10Gi
         storageClass: local-hostpath
+        size: 10Gi
+    securityContext:
+      fsGroup: 1000
+      runAsUser: 1000
+    env:
+      TZ: "Europe/Stockholm"
+      PUID: 1000
+      PGID: 1000
