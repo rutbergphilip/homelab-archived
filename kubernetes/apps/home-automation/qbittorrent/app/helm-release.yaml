@@ -48,6 +48,7 @@ spec:
         - name: DOCKER_MODS
           value: "ghcr.io/gabe565/linuxserver-mod-vuetorrent"
     persistence:
+      enabled: true
       storageClass: local-hostpath
       size: 10Gi
       vuetorrent:
