@@ -7,3 +7,4 @@ resources:
   - ./authentik/ks.yaml
   - ./homepage
   - ./adguard
+  - ./qbittorrent/app
