@@ -45,10 +45,12 @@ spec:
     persistence:
       config:
         enabled: true
+        accessMode: ReadWriteOnce
         storageClass: local-hostpath
         size: 1Gi
       downloads:
         enabled: true
+        accessMode: ReadWriteOnce
         storageClass: local-hostpath
         size: 10Gi
     securityContext:
