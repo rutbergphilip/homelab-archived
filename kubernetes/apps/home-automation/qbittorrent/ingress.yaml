@@ -15,7 +15,7 @@ metadata:
 spec:
   ingressClassName: external
   rules:
-    - host: &host qbittorrent.rutberg.dev
+    - host: qbittorrent.rutberg.dev
       http:
         paths:
           - path: /
@@ -24,7 +24,4 @@ spec:
               service:
                 name: qbittorrent
                 port:
-                  number: 9000
-  tls:
-    - hosts:
-        - *host
+                  number: 8080
