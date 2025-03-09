@@ -6,6 +6,6 @@ resources:
   - ./namespace.yaml
   - ./authentik/ks.yaml
   # - ./qbittorrent/ks.yaml
-  # - ./qbittorrent
+  - ./qbittorrent
   - ./homepage
   - ./adguard
