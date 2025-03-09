@@ -30,16 +30,19 @@ spec:
               value: "1000"
             - name: TZ
               value: "Europe/Stockholm"
+            # # Add this for better external discovery
+            # - name: ADVERTISE_IP
+            #   value: "https://plex.rutberg.dev"
 
           volumeMounts:
-            - name: qbittorrent
+            - name: plex-config
               mountPath: /config
             - name: downloads-movies
-              mountPath: /downloads/movies
+              mountPath: /data/movies
             - name: downloads-series
-              mountPath: /downloads/series
+              mountPath: /data/tv
             #       - name: downloads-movies4k
-            #         mountPath: /downloads/movies4k
+            #         mountPath: /data/movies4k
 
           resources:
             limits:
@@ -50,9 +53,9 @@ spec:
               memory: 200Mi
 
       volumes:
-        - name: qbittorrent
+        - name: plex-config
           persistentVolumeClaim:
-            claimName: qbittorrent
+            claimName: plex-config
         - name: downloads-series
           persistentVolumeClaim:
             claimName: downloads-series
