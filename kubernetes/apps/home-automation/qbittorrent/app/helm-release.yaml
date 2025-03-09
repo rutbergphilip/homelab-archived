@@ -32,7 +32,7 @@ spec:
           main:
             image:
               repository: ghcr.io/onedr0p/qbittorrent
-              tag: latest
+              tag: 5.0.4
             env:
               TZ: Europe/Stockholm
             resources:
