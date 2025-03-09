@@ -50,3 +50,8 @@ spec:
           http:
             port: 8080
             targetPort: http
+    persistence:
+      main:
+        enabled: true
+        size: 20Gi
+        storageClass: local-hostpath
