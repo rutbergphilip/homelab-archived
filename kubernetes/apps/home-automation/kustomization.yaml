@@ -5,6 +5,7 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - ./authentik/ks.yaml
-  - ./qbittorrent/ks.yaml
+  # - ./qbittorrent/ks.yaml
+  # - ./qbittorrent
   - ./homepage
   - ./adguard
