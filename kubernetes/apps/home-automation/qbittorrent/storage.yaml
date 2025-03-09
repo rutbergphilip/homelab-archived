@@ -22,7 +22,7 @@ spec:
   volumeMode: Filesystem
   storageClassName: local-hostpath
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -35,7 +35,7 @@ spec:
   volumeMode: Filesystem
   storageClassName: local-hostpath
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
 # ---
 # apiVersion: v1
 # kind: PersistentVolumeClaim
