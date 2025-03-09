@@ -30,17 +30,16 @@ spec:
               value: "1000"
             - name: TZ
               value: "Europe/Stockholm"
-            # # Add this for better external discovery
-            # - name: ADVERTISE_IP
-            #   value: "https://plex.rutberg.dev"
 
           volumeMounts:
             - name: plex-config
               mountPath: /config
             - name: downloads-movies
               mountPath: /data/movies
+              readOnly: true
             - name: downloads-series
               mountPath: /data/tv
+              readOnly: true
             #       - name: downloads-movies4k
             #         mountPath: /data/movies4k
 
