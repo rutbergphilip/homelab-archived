@@ -20,6 +20,12 @@ spec:
       containers:
         - name: qbittorrent
           image: lscr.io/linuxserver/qbittorrent:4.4.3
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+            allowPrivilegeEscalation: false
+            privileged: false
+            readOnlyRootFilesystem: false
           ports:
             - name: qbittorrent
               containerPort: 8080
@@ -46,6 +52,9 @@ spec:
             requests:
               cpu: 100m
               memory: 200Mi
+      securityContext:
+        fsGroup: 1000
+        runAsNonRoot: true
       volumes:
         - name: qbittorrent
           persistentVolumeClaim:
