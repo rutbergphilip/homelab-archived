@@ -29,16 +29,16 @@ spec:
             - name: PGID
               value: "1000"
             - name: UMASK
-              value: "022"
+              value: "002" # Changed from 022 to 002 to make files group-readable/writable
           volumeMounts:
             - name: qbittorrent
               mountPath: /config
             - name: downloads-movies
               mountPath: /downloads/movies
-            #       - name: downloads-movies4k
-            #         mountPath: /downloads/movies4k
             - name: downloads-series
               mountPath: /downloads/series
+            #       - name: downloads-movies4k
+            #         mountPath: /downloads/movies4k
           resources:
             limits:
               cpu: 150m

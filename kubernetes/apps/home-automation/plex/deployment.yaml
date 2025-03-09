@@ -36,10 +36,8 @@ spec:
               mountPath: /config
             - name: downloads-movies
               mountPath: /data/movies
-              readOnly: true
             - name: downloads-series
               mountPath: /data/tv
-              readOnly: true
             #       - name: downloads-movies4k
             #         mountPath: /data/movies4k
 
