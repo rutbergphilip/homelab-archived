@@ -1,0 +1,61 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: qbittorrent
+  labels:
+    app: qbittorrent
+    part-of: qbittorrent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: qbittorrent
+      part-of: qbittorrent
+  template:
+    metadata:
+      labels:
+        app: qbittorrent
+        part-of: qbittorrent
+    spec:
+      containers:
+        - name: qbittorrent
+          image: lscr.io/linuxserver/qbittorrent:4.4.3
+          ports:
+            - name: qbittorrent
+              containerPort: 8080
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+            - name: UMASK
+              value: "022"
+          volumeMounts:
+            - name: qbittorrent
+              mountPath: /config
+            - name: downloads-movies
+              mountPath: /downloads/movies
+            #       - name: downloads-movies4k
+            #         mountPath: /downloads/movies4k
+            - name: downloads-series
+              mountPath: /downloads/series
+          resources:
+            limits:
+              cpu: 150m
+              memory: 500Mi
+            requests:
+              cpu: 100m
+              memory: 200Mi
+      volumes:
+        - name: qbittorrent
+          persistentVolumeClaim:
+            claimName: qbittorrent
+        - name: downloads-series
+          persistentVolumeClaim:
+            claimName: downloads-series
+        - name: downloads-movies
+          persistentVolumeClaim:
+            claimName: downloads-movies
+#      - name: downloads-movies4k
+#        persistentVolumeClaim:
+#          claimName: downloads-movies4k
