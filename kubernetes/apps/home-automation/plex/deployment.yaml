@@ -19,12 +19,6 @@ spec:
       containers:
         - name: plex
           image: lscr.io/linuxserver/plex:latest
-          securityContext:
-            runAsUser: 1000
-            runAsGroup: 1000
-            allowPrivilegeEscalation: false
-            privileged: false
-            readOnlyRootFilesystem: false
           ports:
             - name: plex
               containerPort: 32400
@@ -54,10 +48,6 @@ spec:
             requests:
               cpu: 400m
               memory: 200Mi
-
-      securityContext:
-        fsGroup: 1000
-        runAsNonRoot: true
 
       volumes:
         - name: plex-config
