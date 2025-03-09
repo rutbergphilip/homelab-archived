@@ -1,0 +1,64 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: plex
+  labels:
+    app: plex
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: plex
+  template:
+    metadata:
+      labels:
+        app: plex
+
+    spec:
+      containers:
+        - name: plex
+          image: lscr.io/linuxserver/plex:latest
+          ports:
+            - name: plex
+              containerPort: 32400
+
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+            - name: TZ
+              value: "Europe/Stockholm"
+
+          volumeMounts:
+            - name: qbittorrent
+              mountPath: /config
+            - name: downloads-movies
+              mountPath: /downloads/movies
+            - name: downloads-series
+              mountPath: /downloads/series
+            #       - name: downloads-movies4k
+            #         mountPath: /downloads/movies4k
+
+          resources:
+            limits:
+              cpu: 150m
+              memory: 500Mi
+            requests:
+              cpu: 100m
+              memory: 200Mi
+
+      volumes:
+        - name: qbittorrent
+          persistentVolumeClaim:
+            claimName: qbittorrent
+        - name: downloads-series
+          persistentVolumeClaim:
+            claimName: downloads-series
+        - name: downloads-movies
+          persistentVolumeClaim:
+            claimName: downloads-movies
+#      - name: downloads-movies4k
+#        persistentVolumeClaim:
+#          claimName: downloads-movies4k
