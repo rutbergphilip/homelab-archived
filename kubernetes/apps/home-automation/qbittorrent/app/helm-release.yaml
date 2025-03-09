@@ -42,5 +42,11 @@ spec:
               limits:
                 memory: 4Gi
             ports:
-              - name: qbittorrent
+              - name: http
                 containerPort: 8080
+    service:
+      main:
+        ports:
+          http:
+            port: 8080
+            targetPort: http
