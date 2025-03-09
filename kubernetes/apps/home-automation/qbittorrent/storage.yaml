@@ -10,3 +10,42 @@ spec:
   storageClassName: local-hostpath
   accessModes:
     - ReadWriteOnce
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: downloads-movies
+spec:
+  resources:
+    requests:
+      storage: 10Gi
+  volumeMode: Filesystem
+  storageClassName: local-hostpath
+  accessModes:
+    - ReadWriteOnce
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: downloads-series
+spec:
+  resources:
+    requests:
+      storage: 10Gi
+  volumeMode: Filesystem
+  storageClassName: local-hostpath
+  accessModes:
+    - ReadWriteOnce
+# ---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: downloads-movies4k
+# spec:
+#   resources:
+#     requests:
+#       storage: 10Gi
+#   volumeMode: Filesystem
+#   storageClassName: local-hostpath
+#   accessModes:
+#     - ReadWriteOnce
