@@ -41,3 +41,6 @@ spec:
                 memory: 512Mi
               limits:
                 memory: 4Gi
+            ports:
+              - name: qbittorrent
+                containerPort: 8080
