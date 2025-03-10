@@ -5,7 +5,6 @@ metadata:
   namespace: home-automation
   labels:
     app: unpackerr
-
 spec:
   replicas: 1
   selector:
@@ -15,7 +14,6 @@ spec:
     metadata:
       labels:
         app: unpackerr
-
     spec:
       containers:
         - name: unpackerr
@@ -38,13 +36,12 @@ spec:
               value: "/downloads/movies"
             - name: UN_LOG_FILE
               value: "/config/unpackerr.log"
-
       volumes:
         - name: config
           emptyDir: {}
         - name: series
-          hostPath:
-            path: /downloads/series
+          persistentVolumeClaim:
+            claimName: downloads-series
         - name: movies
-          hostPath:
-            path: /downloads/movies
+          persistentVolumeClaim:
+            claimName: downloads-movies
