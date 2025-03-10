@@ -31,6 +31,10 @@ spec:
               mountPath: /downloads/series
             - name: movies
               mountPath: /downloads/movies
+            - name: series-plex
+              mountPath: /data/series
+            - name: movies-plex
+              mountPath: /data/movies
           env:
             - name: UN_FOLDER_0_PATH
               value: "/downloads/series"
@@ -48,3 +52,9 @@ spec:
         - name: movies
           hostPath:
             path: /downloads/movies
+        - name: series-plex
+          hostPath:
+            path: /data/series
+        - name: movies-plex
+          hostPath:
+            path: /data/movies
