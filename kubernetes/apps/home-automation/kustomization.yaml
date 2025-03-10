@@ -9,3 +9,4 @@ resources:
   - ./plex
   - ./homepage
   - ./adguard
+  - ./unpackerr
