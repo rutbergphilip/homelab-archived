@@ -40,6 +40,10 @@ spec:
               value: "/downloads/series"
             - name: UN_FOLDER_1_PATH
               value: "/downloads/movies"
+            - name: UN_FOLDER_2_PATH
+              value: "/data/series"
+            - name: UN_FOLDER_3_PATH
+              value: "/data/movies"
             - name: UN_LOG_FILE
               value: "/config/unpackerr.log"
 
