@@ -31,19 +31,11 @@ spec:
               mountPath: /downloads/series
             - name: movies
               mountPath: /downloads/movies
-            - name: series-plex
-              mountPath: /data/series
-            - name: movies-plex
-              mountPath: /data/movies
           env:
             - name: UN_FOLDER_0_PATH
               value: "/downloads/series"
             - name: UN_FOLDER_1_PATH
               value: "/downloads/movies"
-            - name: UN_FOLDER_2_PATH
-              value: "/data/series"
-            - name: UN_FOLDER_3_PATH
-              value: "/data/movies"
             - name: UN_LOG_FILE
               value: "/config/unpackerr.log"
 
@@ -56,9 +48,3 @@ spec:
         - name: movies
           hostPath:
             path: /downloads/movies
-        - name: series-plex
-          hostPath:
-            path: /data/series
-        - name: movies-plex
-          hostPath:
-            path: /data/movies
