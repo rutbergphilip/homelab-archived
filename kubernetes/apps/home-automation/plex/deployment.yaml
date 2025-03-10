@@ -37,11 +37,11 @@ spec:
             - name: plex-config
               mountPath: /config
             - name: downloads-movies
-              mountPath: /data/movies
+              mountPath: /downloads/movies
             - name: downloads-series
-              mountPath: /data/tv
+              mountPath: /downloads/series
             #       - name: downloads-movies4k
-            #         mountPath: /data/movies4k
+            #         mountPath: /downloads/movies4k
 
           resources:
             limits:
