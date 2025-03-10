@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: unpackerr
+  labels:
+    app: unpackerr
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: unpackerr
+  template:
+    metadata:
+      labels:
+        app: unpackerr
+
+    spec:
+      containers:
+        - name: unpackerr
+          image: ghcr.io/unpackerr/unpackerr:latest
+          resources:
+            limits:
+              cpu: 400m
+              memory: 400Mi
+          volumeMounts:
+            - name: config
+              mountPath: /config
+            - name: series
+              mountPath: /downloads/series
+            - name: movies
+              mountPath: /downloads/movies
+          env:
+            - name: UN_FOLDER_0_PATH
+              value: "/downloads/series"
+            - name: UN_FOLDER_1_PATH
+              value: "/downloads/movies"
+            - name: UN_LOG_FILE
+              value: "/config/unpackerr.log"
+
+      volumes:
+        - name: config
+          emptyDir: {}
+        - name: series
+          hostPath:
+            path: /downloads/series
+        - name: movies
+          hostPath:
+            path: /downloads/movies
