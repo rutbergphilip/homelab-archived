@@ -41,9 +41,15 @@ spec:
       volumes:
         - name: config
           emptyDir: {}
-        - name: series
-          hostPath:
-            path: /downloads/series
-        - name: movies
-          hostPath:
-            path: /downloads/movies
+        - name: downloads-series
+          persistentVolumeClaim:
+            claimName: downloads-series
+        - name: downloads-movies
+          persistentVolumeClaim:
+            claimName: downloads-movies
+        # - name: series
+        #   hostPath:
+        #     path: /downloads/series
+        # - name: movies
+        #   hostPath:
+        #     path: /downloads/movies
