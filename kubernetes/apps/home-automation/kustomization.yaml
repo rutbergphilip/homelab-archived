@@ -6,7 +6,7 @@ resources:
   - ./namespace.yaml
   - ./authentik/ks.yaml
   - ./qbittorrent
-  # - ./plex
+  - ./plex
   - ./homepage
   - ./adguard
-  # - ./unpackerr
+  - ./unpackerr
