@@ -20,13 +20,11 @@ spec:
           image: filebrowser/filebrowser:s6
           ports:
             - containerPort: 80
-          args:
-            - "--auth.method=noauth"
 
           resources:
             limits:
-              memory: 512Mi
-              cpu: 500m
+              memory: 800Mi
+              cpu: 400m
 
           volumeMounts:
             - name: filebrowser-data
