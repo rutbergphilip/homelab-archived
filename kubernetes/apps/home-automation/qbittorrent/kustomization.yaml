@@ -8,5 +8,5 @@ resources:
   - ./deployment.yaml
   - ./service.yaml
   - ./serviceaccount.yaml
-  - ./storage.yaml
+  - ./pvc.yaml
   - ./ingress.yaml
