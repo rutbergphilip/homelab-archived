@@ -28,7 +28,7 @@ spec:
 
           volumeMounts:
             - name: filebrowser-data
-              mountPath: /srv
+              mountPath: /
 
           env:
             - name: PUID
