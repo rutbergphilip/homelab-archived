@@ -36,12 +36,10 @@ spec:
           volumeMounts:
             - name: plex-config
               mountPath: /config
-            - name: downloads-movies
-              mountPath: /downloads/movies
-            - name: downloads-series
-              mountPath: /downloads/series
-            #       - name: downloads-movies4k
-            #         mountPath: /downloads/movies4k
+            - name: extracted-movies
+              mountPath: /extracted/movies
+            - name: extracted-series
+              mountPath: /extracted/series
 
           resources:
             limits:
@@ -55,12 +53,9 @@ spec:
         - name: plex-config
           persistentVolumeClaim:
             claimName: plex-config
-        - name: downloads-series
+        - name: extracted-series
           persistentVolumeClaim:
-            claimName: downloads-series
-        - name: downloads-movies
+            claimName: extracted-series
+        - name: extracted-movies
           persistentVolumeClaim:
-            claimName: downloads-movies
-#      - name: downloads-movies4k
-#        persistentVolumeClaim:
-#          claimName: downloads-movies4k
+            claimName: extracted-movies
