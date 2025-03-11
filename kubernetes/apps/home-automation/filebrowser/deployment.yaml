@@ -36,12 +36,11 @@ spec:
               mountPath: /srv/movies
             - name: extracted-series
               mountPath: /srv/series
-            # - name: filebrowser-db
-            #   mountPath: /database/filebrowser.db
-            #   subPath: filebrowser.db
-            # - name: filebrowser-config
-            #   mountPath: /config/settings.json
-            #   subPath: settings.json
+            - name: filebrowser-db
+              mountPath: /database
+            - name: filebrowser-config
+              mountPath: /config/settings.json
+              subPath: settings.json
 
           env:
             - name: PUID
@@ -56,9 +55,9 @@ spec:
         - name: extracted-series
           persistentVolumeClaim:
             claimName: extracted-series
-        # - name: filebrowser-db
-        #   persistentVolumeClaim:
-        #     claimName: filebrowser-db
-        # - name: filebrowser-config
-        #   persistentVolumeClaim:
-        #     claimName: filebrowser-config
+        - name: filebrowser-db
+          persistentVolumeClaim:
+            claimName: filebrowser-db
+        - name: filebrowser-config
+          configMap:
+            name: filebrowser-config
