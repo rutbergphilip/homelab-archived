@@ -16,8 +16,8 @@ spec:
 
     spec:
       securityContext:
-        runAsUser: 1000
-        runAsGroup: 1000
+        runAsUser: 0
+        runAsGroup: 0
         fsGroup: 1000
         allowPrivilegeEscalation: true
       containers:
