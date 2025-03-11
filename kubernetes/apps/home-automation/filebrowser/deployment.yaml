@@ -27,8 +27,16 @@ spec:
               cpu: 400m
 
           volumeMounts:
-            - name: filebrowser-data
-              mountPath: /
+            - name: downloads-movies
+              mountPath: /srv/movies
+            - name: downloads-series
+              mountPath: /srv/series
+            # - name: filebrowser-db
+            #   mountPath: /database/filebrowser.db
+            #   subPath: filebrowser.db
+            # - name: filebrowser-config
+            #   mountPath: /config/settings.json
+            #   subPath: settings.json
 
           env:
             - name: PUID
@@ -37,6 +45,15 @@ spec:
               value: "1000"
 
       volumes:
-        - name: filebrowser-data
+        - name: downloads-movies
           persistentVolumeClaim:
-            claimName: filebrowser-pvc
+            claimName: downloads-movies
+        - name: downloads-series
+          persistentVolumeClaim:
+            claimName: downloads-series
+        # - name: filebrowser-db
+        #   persistentVolumeClaim:
+        #     claimName: filebrowser-db
+        # - name: filebrowser-config
+        #   persistentVolumeClaim:
+        #     claimName: filebrowser-config
