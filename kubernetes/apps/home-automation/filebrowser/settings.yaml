@@ -13,4 +13,7 @@ data:
       "log": "stdout",
       "database": "/database/filebrowser.db",
       "root": "/srv"
+      "auth": {
+        "method": "noauth"
+      }
     }
