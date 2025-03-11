@@ -8,6 +8,5 @@ resources:
   - ./qbittorrent
   - ./plex
   - ./homepage
-  - ./adguard
   - ./unpackerr
   - ./filebrowser
