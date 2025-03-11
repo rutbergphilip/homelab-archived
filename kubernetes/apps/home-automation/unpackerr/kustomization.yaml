@@ -7,3 +7,4 @@ namespace: home-automation
 resources:
   - ./deployment.yaml
   - ./service.yaml
+  - ./pvc.yaml
