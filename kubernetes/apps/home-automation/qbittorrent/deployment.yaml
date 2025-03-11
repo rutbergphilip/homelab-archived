@@ -25,6 +25,7 @@ spec:
           ports:
             - name: qbittorrent
               containerPort: 8080
+
           env:
             - name: PUID
               value: "1000"
@@ -32,6 +33,7 @@ spec:
               value: "1000"
             - name: UMASK
               value: "002"
+
           volumeMounts:
             - name: qbittorrent
               mountPath: /config
@@ -39,15 +41,12 @@ spec:
               mountPath: /downloads/movies
             - name: downloads-series
               mountPath: /downloads/series
-            #       - name: downloads-movies4k
-            #         mountPath: /downloads/movies4k
+
           resources:
             limits:
               cpu: 400m
               memory: 600Mi
-            requests:
-              cpu: 200m
-              memory: 200Mi
+
       volumes:
         - name: qbittorrent
           persistentVolumeClaim:
@@ -58,6 +57,3 @@ spec:
         - name: downloads-movies
           persistentVolumeClaim:
             claimName: downloads-movies
-#      - name: downloads-movies4k
-#        persistentVolumeClaim:
-#          claimName: downloads-movies4k

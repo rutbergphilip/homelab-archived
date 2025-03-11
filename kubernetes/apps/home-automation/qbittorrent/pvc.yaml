@@ -36,27 +36,3 @@ spec:
   storageClassName: local-hostpath
   accessModes:
     - ReadWriteMany
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: extracted-movies
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 10Gi
-  storageClassName: local-hostpath
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: extracted-series
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 10Gi
-  storageClassName: local-hostpath
