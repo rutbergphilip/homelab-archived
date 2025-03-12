@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: test-job
+  name: lilla-ego
   namespace: home-automation
 spec:
   schedule: "0 * * * *"
