@@ -1,7 +1,8 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: myjob
+  name: test-job
+  namespace: home-automation
 spec:
   schedule: "0 * * * *"
   jobTemplate:
