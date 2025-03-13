@@ -33,9 +33,9 @@ spec:
             - name: downloads-movies
               mountPath: /downloads/movies
             - name: extracted-series
-              mountPath: /extracted/series
+              mountPath: /series
             - name: extracted-movies
-              mountPath: /extracted/movies
+              mountPath: /movies
 
           env:
             - name: UN_FOLDER_0_PATH
@@ -43,9 +43,9 @@ spec:
             - name: UN_FOLDER_1_PATH
               value: "/downloads/movies"
             - name: UN_FOLDER_0_EXTRACT_PATH
-              value: "/extracted/series"
+              value: "/series"
             - name: UN_FOLDER_1_EXTRACT_PATH
-              value: "/extracted/movies"
+              value: "/movies"
             - name: UN_LOG_FILE
               value: "/config/unpackerr.log"
 

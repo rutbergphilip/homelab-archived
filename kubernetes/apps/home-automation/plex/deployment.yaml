@@ -37,9 +37,9 @@ spec:
             - name: plex-config
               mountPath: /config
             - name: extracted-movies
-              mountPath: /extracted/movies
+              mountPath: /movies
             - name: extracted-series
-              mountPath: /extracted/series
+              mountPath: /series
 
           resources:
             limits:
