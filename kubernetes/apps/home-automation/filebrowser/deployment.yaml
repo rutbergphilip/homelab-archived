@@ -19,6 +19,21 @@ spec:
         runAsUser: 0
         runAsGroup: 0
         fsGroup: 1000
+      fsGroup: 1000
+      initContainers:
+        - name: init-chown
+          image: busybox
+          command:
+            [
+              "sh",
+              "-c",
+              "chown -R 1000:1000 /srv/extracted/movies /srv/extracted/series",
+            ]
+          volumeMounts:
+            - name: extracted-movies
+              mountPath: /srv/extracted/movies
+            - name: extracted-series
+              mountPath: /srv/extracted/series
       containers:
         - name: filebrowser
           image: filebrowser/filebrowser:s6
