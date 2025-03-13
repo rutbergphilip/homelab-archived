@@ -27,6 +27,8 @@ spec:
             runAsUser: 1000
             runAsGroup: 1000
             allowPrivilegeEscalation: true
+            capabilities:
+              add: ["SETGID"]
 
           resources:
             limits:
