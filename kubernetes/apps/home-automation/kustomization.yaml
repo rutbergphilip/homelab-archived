@@ -5,8 +5,8 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - ./authentik/ks.yaml
-  # - ./qbittorrent
-  # - ./plex
+  - ./qbittorrent
+  - ./plex
   - ./homepage
-  # - ./unpackerr
-  # - ./filebrowser
+  - ./unpackerr
+  - ./filebrowser
