@@ -19,7 +19,6 @@ spec:
         runAsUser: 0
         runAsGroup: 0
         fsGroup: 1000
-        allowPrivilegeEscalation: true
       containers:
         - name: filebrowser
           image: filebrowser/filebrowser:s6
