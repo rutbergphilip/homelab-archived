@@ -36,6 +36,10 @@ spec:
               mountPath: /srv/movies
             - name: extracted-series
               mountPath: /srv/series
+            - name: downloads-movies
+              mountPath: /srv/movies
+            - name: downloads-series
+              mountPath: /srv/series
             - name: filebrowser-db
               mountPath: /database
             - name: filebrowser-config
@@ -55,6 +59,12 @@ spec:
         - name: extracted-series
           persistentVolumeClaim:
             claimName: extracted-series
+        - name: downloads-movies
+          persistentVolumeClaim:
+            claimName: downloads-movies
+        - name: downloads-series
+          persistentVolumeClaim:
+            claimName: downloads-series
         - name: filebrowser-db
           persistentVolumeClaim:
             claimName: filebrowser-db
