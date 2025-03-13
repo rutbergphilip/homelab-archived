@@ -24,6 +24,8 @@ spec:
           image: filebrowser/filebrowser:s6
           ports:
             - containerPort: 80
+          securityContext:
+            allowPrivilegeEscalation: true
 
           resources:
             limits:
