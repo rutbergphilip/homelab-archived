@@ -36,9 +36,9 @@ spec:
             - name: downloads-series
               mountPath: /srv/downloads/series
             - name: extracted-movies
-              mountPath: /srv/extracted/movies
+              mountPath: /srv/movies
             - name: extracted-series
-              mountPath: /srv/extracted/series
+              mountPath: /srv/series
             - name: filebrowser-db
               mountPath: /database
             - name: filebrowser-config
