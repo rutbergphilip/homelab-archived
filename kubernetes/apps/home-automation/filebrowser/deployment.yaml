@@ -33,13 +33,13 @@ spec:
 
           volumeMounts:
             - name: extracted-movies
-              mountPath: /srv/movies
+              mountPath: /srv/extracted-movies
             - name: extracted-series
-              mountPath: /srv/series
+              mountPath: /srv/extracted-series
             - name: downloads-movies
-              mountPath: /srv/movies
+              mountPath: /srv/downloads-movies
             - name: downloads-series
-              mountPath: /srv/series
+              mountPath: /srv/downloads-series
             - name: filebrowser-db
               mountPath: /database
             - name: filebrowser-config
