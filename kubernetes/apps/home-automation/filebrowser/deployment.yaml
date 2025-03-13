@@ -50,9 +50,9 @@ spec:
 
           env:
             - name: PUID
-              value: "1000"
+              value: "0"
             - name: PGID
-              value: "1000"
+              value: "0"
 
       volumes:
         - name: downloads-movies
