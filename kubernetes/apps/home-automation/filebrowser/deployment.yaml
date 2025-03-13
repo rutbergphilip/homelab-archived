@@ -32,14 +32,14 @@ spec:
               cpu: 400m
 
           volumeMounts:
-            - name: extracted-movies
-              mountPath: /srv/extracted-movies
-            - name: extracted-series
-              mountPath: /srv/extracted-series
-            - name: downloads-movies
-              mountPath: /srv/downloads-movies
             - name: downloads-series
-              mountPath: /srv/downloads-series
+              mountPath: /srv/downloads/series
+            - name: downloads-movies
+              mountPath: /srv/downloads/movies
+            - name: extracted-series
+              mountPath: /srv/extracted/series
+            - name: extracted-movies
+              mountPath: /srv/extracted/movies
             - name: filebrowser-db
               mountPath: /database
             - name: filebrowser-config
@@ -53,18 +53,18 @@ spec:
               value: "1000"
 
       volumes:
-        - name: extracted-movies
-          persistentVolumeClaim:
-            claimName: extracted-movies
-        - name: extracted-series
-          persistentVolumeClaim:
-            claimName: extracted-series
-        - name: downloads-movies
-          persistentVolumeClaim:
-            claimName: downloads-movies
         - name: downloads-series
           persistentVolumeClaim:
             claimName: downloads-series
+        - name: downloads-movies
+          persistentVolumeClaim:
+            claimName: downloads-movies
+        - name: extracted-series
+          persistentVolumeClaim:
+            claimName: extracted-series
+        - name: extracted-movies
+          persistentVolumeClaim:
+            claimName: extracted-movies
         - name: filebrowser-db
           persistentVolumeClaim:
             claimName: filebrowser-db
