@@ -5,7 +5,7 @@ metadata:
   name: extracted-movies
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 10Gi
@@ -17,7 +17,7 @@ metadata:
   name: extracted-series
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 10Gi
