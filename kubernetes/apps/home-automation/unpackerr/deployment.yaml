@@ -23,7 +23,7 @@ spec:
           resources:
             limits:
               cpu: 400m
-              memory: 400Mi
+              memory: 500Mi
 
           volumeMounts:
             - name: config
