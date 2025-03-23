@@ -7,6 +7,7 @@ resources:
   - ./authentik/ks.yaml
   - ./qbittorrent
   - ./plex
+  - ./jellyfin
   - ./homepage
   - ./unpackerr
   - ./filebrowser
