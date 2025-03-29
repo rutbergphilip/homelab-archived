@@ -41,6 +41,10 @@ spec:
               mountPath: /downloads/movies
             - name: downloads-series
               mountPath: /downloads/series
+            - name: extracted-movies
+              mountPath: /movies
+            - name: extracted-series
+              mountPath: /series
 
           resources:
             limits:
@@ -57,3 +61,9 @@ spec:
         - name: downloads-movies
           persistentVolumeClaim:
             claimName: downloads-movies
+        - name: extracted-movies
+          persistentVolumeClaim:
+            claimName: extracted-movies
+        - name: extracted-series
+          persistentVolumeClaim:
+            claimName: extracted-series
