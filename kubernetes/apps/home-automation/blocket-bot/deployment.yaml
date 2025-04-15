@@ -22,7 +22,7 @@ spec:
 
       containers:
         - name: blocket-bot
-          image: rutbergphilip/blocket-bot:latest
+          image: rutbergphilip/blocket-bot:v2.0.0
           ports:
             - containerPort: 3000
           securityContext:
