@@ -32,6 +32,9 @@ spec:
             limits:
               memory: 500Mi
               cpu: 200m
+            requests:
+              memory: 200Mi
+              cpu: 100m
 
           volumeMounts:
             - name: blocket-bot-db
